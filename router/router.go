@@ -19,6 +19,7 @@ func CreateRouter() {
 	APIRouter.PathPrefix("/swagger/").Handler(httpSwagger.WrapHandler)
 
 	createHealthyRouter(APIRouter)
+	createHousingRouter(APIRouter)
 
 	port := os.Getenv("PORT")
 	if port == "" {

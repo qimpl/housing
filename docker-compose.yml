@@ -5,13 +5,15 @@ services:
     container_name: "api-housing"
     image: golang:latest
     working_dir: /api
+    env_file:
+      - .env
     volumes:
       - ".:/api"
     entrypoint: ["./entrypoint.sh", "reflex", "-c", "reflex.conf"]
 
   db:
     container_name: "db-housing"
-    image: postgres:10-alpine
+    image: postgres:13-alpine
     restart: always
     environment:
       POSTGRES_USER: ${DB_USER}
