@@ -11,7 +11,7 @@ import (
 	httpSwagger "github.com/swaggo/http-swagger"
 )
 
-// CreateRouter create APP_NAME API routes
+// CreateRouter create housing API routes
 func CreateRouter() {
 	router := mux.NewRouter()
 	APIRouter := router.PathPrefix("/api/v1").Subrouter()
