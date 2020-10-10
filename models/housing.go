@@ -19,6 +19,7 @@ type Housing struct {
 	Street        string    `json:"street" example:"78 Rue Solférino"`
 	Zip           string    `json:"zip" example:"59000"`
 	IsFurnished   bool      `json:"is_furnished,omitempty" example:"false"`
+	StatusID      uuid.UUID `json:"status_id" pg:"status_id" example:"e185deb2-91d5-4ab7-87b3-daaffac00e3d"`
 	OwnerID       uuid.UUID `json:"owner_id" pg:"owner_id" example:"e185deb2-91d5-4ab7-87b3-daaffac00e3d"`
 	LastTenantID  uuid.UUID `json:"last_tenant_id,omitempty" pg:"last_tenant_id" example:"e185deb2-91d5-4ab7-87b3-daaffac00e3d"`
 	CreatedAt     time.Time `json:"created_at,omitempty" swaggerignore:"true"`

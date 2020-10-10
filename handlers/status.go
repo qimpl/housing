@@ -1,0 +1,60 @@
+package handlers
+
+import (
+	"encoding/json"
+	"net/http"
+
+	"github.com/qimpl/housing/db"
+	"github.com/qimpl/housing/models"
+)
+
+// CreateHousingStatus handles housing status POST request and return a housing status if no error is returned
+// @Summary Insert a housing status
+// @Description Create a new housing status with given data
+// @Accept json
+// @Produce json
+// @Param status body models.Status true "Housing status data"
+// @Success 200 {string} models.Status
+// @Failure 400 {string} string
+// @Failure 422 {string} string
+// @Router /housing/status [post]
+func CreateHousingStatus(w http.ResponseWriter, r *http.Request) {
+	var housingStatus *models.Status
+
+	if err := json.NewDecoder(r.Body).Decode(&housingStatus); err != nil {
+		w.WriteHeader(http.StatusUnprocessableEntity)
+		json.NewEncoder(w).Encode("Body malformed data")
+		return
+	}
+
+	housingStatus, err := db.CreateHousingStatus(housingStatus)
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		json.NewEncoder(w).Encode("Housing status creation failed")
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusCreated)
+	json.NewEncoder(w).Encode(housingStatus)
+}
+
+// GetAllHousingStatuses returns all the housing statuses found inside the database if no error is returned
+// @Summary Get all housing statuses
+// @Description Search all housing statuses
+// @Produce json
+// @Success 200 {string} []models.Status
+// @Failure 400 {string} string
+// @Router /housing/status [get]
+func GetAllHousingStatuses(w http.ResponseWriter, r *http.Request) {
+	housingStatuses, err := db.GetAllHousingStatuses()
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		json.NewEncoder(w).Encode("An error occurred during housing statuses retrieval")
+
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(housingStatuses)
+}
