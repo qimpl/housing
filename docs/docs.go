@@ -109,6 +109,70 @@ var doc = `{
                 }
             }
         },
+        "/housing/status": {
+            "get": {
+                "description": "Search all housing statuses",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Get all housing statuses",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Create a new housing status with given data",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Insert a housing status",
+                "parameters": [
+                    {
+                        "description": "Housing status data",
+                        "name": "status",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Status"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
         "/housing/type": {
             "get": {
                 "description": "Search all housing types",
@@ -242,6 +306,10 @@ var doc = `{
                     "type": "string",
                     "example": "Haut-de-France"
                 },
+                "status_id": {
+                    "type": "string",
+                    "example": "e185deb2-91d5-4ab7-87b3-daaffac00e3d"
+                },
                 "street": {
                     "type": "string",
                     "example": "78 Rue Solférino"
@@ -266,6 +334,15 @@ var doc = `{
                 "name": {
                     "type": "string",
                     "example": "garage"
+                }
+            }
+        },
+        "models.Status": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "example": "sold"
                 }
             }
         }

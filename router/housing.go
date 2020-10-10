@@ -28,4 +28,12 @@ func createHousingRouter(router *mux.Router) {
 	housingRouter.
 		HandleFunc("/type", handlers.GetAllHousingTypes).
 		Methods("GET")
+
+	housingRouter.
+		HandleFunc("/status", handlers.CreateHousingStatus).
+		Methods("POST")
+
+	housingRouter.
+		HandleFunc("/status", handlers.GetAllHousingStatuses).
+		Methods("GET")
 }
