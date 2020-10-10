@@ -7,17 +7,25 @@ import (
 )
 
 func createHousingRouter(router *mux.Router) {
-	healthyRouter := router.PathPrefix("/housing").Subrouter()
+	housingRouter := router.PathPrefix("/housing").Subrouter()
 
-	healthyRouter.
+	housingRouter.
 		HandleFunc("", handlers.CreateHousing).
 		Methods("POST")
 
-	healthyRouter.
+	housingRouter.
 		HandleFunc("", handlers.GetAllHousing).
 		Methods("GET")
 
-	healthyRouter.
-		HandleFunc("/{housing_type_id}", handlers.GetAllHousingByType).
+	housingRouter.
+		HandleFunc("/{housing_type_id:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}}", handlers.GetAllHousingByType).
+		Methods("GET")
+
+	housingRouter.
+		HandleFunc("/type", handlers.CreateHousingType).
+		Methods("POST")
+
+	housingRouter.
+		HandleFunc("/type", handlers.GetAllHousingTypes).
 		Methods("GET")
 }
