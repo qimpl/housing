@@ -75,7 +75,7 @@ var doc = `{
                 "produces": [
                     "application/json"
                 ],
-                "summary": "Create a new housing",
+                "summary": "Insert a housing",
                 "parameters": [
                     {
                         "description": "Housing data",
@@ -84,6 +84,70 @@ var doc = `{
                         "required": true,
                         "schema": {
                             "$ref": "#/definitions/models.Housing"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/housing/type": {
+            "get": {
+                "description": "Search all housing types",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Get all housing types",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Create a new housing type with given data",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Insert a housing type",
+                "parameters": [
+                    {
+                        "description": "Housing type data",
+                        "name": "type",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.HousingType"
                         }
                     }
                 ],
@@ -154,12 +218,6 @@ var doc = `{
                     "type": "string",
                     "example": "FR"
                 },
-                "created_at": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "string"
-                },
                 "is_furnished": {
                     "type": "boolean",
                     "example": false
@@ -193,14 +251,21 @@ var doc = `{
                     "example": 15.5
                 },
                 "type_id": {
-                    "type": "string"
-                },
-                "updated_at": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "e185deb2-91d5-4ab7-87b3-daaffac00e3d"
                 },
                 "zip": {
                     "type": "string",
                     "example": "59000"
+                }
+            }
+        },
+        "models.HousingType": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "example": "garage"
                 }
             }
         }

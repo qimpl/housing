@@ -8,10 +8,6 @@ definitions:
       country:
         example: FR
         type: string
-      created_at:
-        type: string
-      id:
-        type: string
       is_furnished:
         example: false
         type: boolean
@@ -37,11 +33,16 @@ definitions:
         example: 15.5
         type: number
       type_id:
-        type: string
-      updated_at:
+        example: e185deb2-91d5-4ab7-87b3-daaffac00e3d
         type: string
       zip:
         example: "59000"
+        type: string
+    type: object
+  models.HousingType:
+    properties:
+      name:
+        example: garage
         type: string
     type: object
 info:
@@ -104,7 +105,7 @@ paths:
           description: Unprocessable Entity
           schema:
             type: string
-      summary: Create a new housing
+      summary: Insert a housing
   /housing/{housing_type_id}:
     get:
       description: Search all housing of a given type
@@ -126,4 +127,46 @@ paths:
           schema:
             type: string
       summary: Get all housing by type
+  /housing/type:
+    get:
+      description: Search all housing types
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      summary: Get all housing types
+    post:
+      consumes:
+      - application/json
+      description: Create a new housing type with given data
+      parameters:
+      - description: Housing type data
+        in: body
+        name: type
+        required: true
+        schema:
+          $ref: '#/definitions/models.HousingType'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "422":
+          description: Unprocessable Entity
+          schema:
+            type: string
+      summary: Insert a housing type
 swagger: "2.0"
