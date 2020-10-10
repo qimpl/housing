@@ -1,0 +1,48 @@
+- type_id: 58fc4ce6-3509-4185-845f-3d9ccda6469a
+  surface_area: 94.8
+  rent_price: 1240
+  rental_charges: 150
+  country: FR
+  state: Nord
+  city: Lille
+  zip: 59800
+  street: 30 Rue Solférino
+  owner_id: RAW=gen_random_uuid()
+  last_tenant_id: RAW=gen_random_uuid()
+
+- type_id: 58fc4ce6-3509-4185-845f-3d9ccda6469a
+  surface_area: 45
+  rent_price: 500
+  rental_charges: 80
+  country: FR
+  state: Nord
+  city: Douai
+  zip: 59500
+  street: 2 Rue Deforest
+  is_furnished: true
+  owner_id: RAW=gen_random_uuid()
+  last_tenant_id: RAW=gen_random_uuid()
+
+- type_id: 58fc4ce6-3509-4185-845f-3d9ccda6469a
+  surface_area: 86.4
+  rent_price: 956.50
+  rental_charges: 95
+  country: FR
+  state: Pas-de-Calais
+  city: Arras
+  zip: 62000
+  street: 89 Rue Méaulens
+  owner_id: RAW=gen_random_uuid()
+  last_tenant_id: RAW=gen_random_uuid()
+
+- type_id: 45a74d6b-1249-4c30-9ccd-6d4a3777b794
+  surface_area: 13
+  rent_price: 60
+  rental_charges: 0
+  country: FR
+  state: Nord
+  city: Ronchin
+  zip: 59790
+  street: 45 Rue du Général Leclerc
+  owner_id: RAW=gen_random_uuid()
+  last_tenant_id: RAW=gen_random_uuid()

@@ -44,6 +44,165 @@ var doc = `{
                     }
                 }
             }
+        },
+        "/housing": {
+            "get": {
+                "description": "Search all housing",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Get all housing",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Create a new housing with given data",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Create a new housing",
+                "parameters": [
+                    {
+                        "description": "Housing data",
+                        "name": "housing",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Housing"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/housing/{housing_type_id}": {
+            "get": {
+                "description": "Search all housing of a given type",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Get all housing by type",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Housing type ID",
+                        "name": "housing_type_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "models.Housing": {
+            "type": "object",
+            "properties": {
+                "city": {
+                    "type": "string",
+                    "example": "Lille"
+                },
+                "country": {
+                    "type": "string",
+                    "example": "FR"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "is_furnished": {
+                    "type": "boolean",
+                    "example": false
+                },
+                "last_tenant_id": {
+                    "type": "string",
+                    "example": "e185deb2-91d5-4ab7-87b3-daaffac00e3d"
+                },
+                "owner_id": {
+                    "type": "string",
+                    "example": "e185deb2-91d5-4ab7-87b3-daaffac00e3d"
+                },
+                "rent_price": {
+                    "type": "number",
+                    "example": 60.95
+                },
+                "rental_charges": {
+                    "type": "number",
+                    "example": 60.9
+                },
+                "state": {
+                    "type": "string",
+                    "example": "Haut-de-France"
+                },
+                "street": {
+                    "type": "string",
+                    "example": "78 Rue Solférino"
+                },
+                "surface_area": {
+                    "type": "number",
+                    "example": 15.5
+                },
+                "type_id": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "zip": {
+                    "type": "string",
+                    "example": "59000"
+                }
+            }
         }
     }
 }`
@@ -63,7 +222,7 @@ var SwaggerInfo = swaggerInfo{
 	Host:        "",
 	BasePath:    "/api/v1",
 	Schemes:     []string{},
-	Title:       "housing API",
+	Title:       "Housing API",
 	Description: "",
 }
 
