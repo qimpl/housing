@@ -237,6 +237,30 @@ var doc = `{
                 }
             }
         },
+        "/housing/{housing_id}": {
+            "delete": {
+                "description": "Delete a given housing by ID",
+                "summary": "Delete a housing by ID",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Housing ID",
+                        "name": "housing_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {},
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
         "/housing/{housing_type_id}": {
             "get": {
                 "description": "Search all housing of a given type",
