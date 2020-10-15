@@ -1,6 +1,7 @@
 package db
 
 import (
+	"github.com/google/uuid"
 	"github.com/qimpl/housing/models"
 )
 
@@ -22,4 +23,15 @@ func GetAllHousingTypes() ([]models.HousingType, error) {
 	}
 
 	return housingTypes, nil
+}
+
+// GetHousingTypeByID get a housings type from the database with a given ID
+func GetHousingTypeByID(housingTypeID uuid.UUID) (*models.HousingType, error) {
+	housingType := &models.HousingType{ID: housingTypeID}
+
+	if err := Db.Select(housingType); err != nil {
+		return nil, err
+	}
+
+	return housingType, nil
 }
