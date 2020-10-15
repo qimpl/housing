@@ -141,6 +141,10 @@ paths:
           description: Bad Request
           schema:
             type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
       summary: Get all housing by type
   /housing/status:
     get:

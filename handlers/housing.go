@@ -74,11 +74,20 @@ func GetAllHousing(w http.ResponseWriter, r *http.Request) {
 // @Param housing_type_id path string true "Housing type ID"
 // @Success 200 {string} []models.Housing
 // @Failure 400 {string} models.ErrorResponse
+// @Failure 404 {string} models.ErrorResponse
 // @Router /housing/{housing_type_id} [get]
 func GetAllHousingByType(w http.ResponseWriter, r *http.Request) {
-	housingTypeID := mux.Vars(r)["housing_type_id"]
+	validUUID := uuid.MustParse(mux.Vars(r)["housing_type_id"])
 
-	housing, err := db.GetHousingByType(uuid.MustParse(housingTypeID))
+	if housingType, _ := db.GetHousingTypeByID(validUUID); housingType == nil {
+		w.WriteHeader(http.StatusNotFound)
+		var notFound *models.NotFound
+		json.NewEncoder(w).Encode(notFound.GetError("The given housing type ID doesn't exist"))
+
+		return
+	}
+
+	housing, err := db.GetHousingByType(validUUID)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		var badRequest *models.BadRequest
