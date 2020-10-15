@@ -282,6 +282,14 @@ var doc = `{
                     "type": "string",
                     "example": "FR"
                 },
+                "has_electricity": {
+                    "type": "boolean",
+                    "example": true
+                },
+                "has_gas": {
+                    "type": "boolean",
+                    "example": false
+                },
                 "is_furnished": {
                     "type": "boolean",
                     "example": false

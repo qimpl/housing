@@ -8,6 +8,12 @@ definitions:
       country:
         example: FR
         type: string
+      has_electricity:
+        example: true
+        type: boolean
+      has_gas:
+        example: false
+        type: boolean
       is_furnished:
         example: false
         type: boolean
