@@ -36,3 +36,14 @@ func GetHousingByType(housingTypeID uuid.UUID) ([]models.Housing, error) {
 
 	return housing, nil
 }
+
+// DeleteHousingByID delete a given housing
+func DeleteHousingByID(housingID uuid.UUID) error {
+	var housing *models.Housing
+
+	if _, err := Db.Model(housing).Where("id = ?", housingID).Delete(); err != nil {
+		return err
+	}
+
+	return nil
+}

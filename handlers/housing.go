@@ -99,3 +99,22 @@ func GetAllHousingByType(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(housing)
 }
+
+// DeleteHousingByID delete a given housing with its ID
+// @Summary Delete a housing by ID
+// @Description Delete a given housing by ID
+// @Param housing_id path string true "Housing ID"
+// @Success 204 ""
+// @Failure 400 {string} models.ErrorResponse
+// @Router /housing/{housing_id} [delete]
+func DeleteHousingByID(w http.ResponseWriter, r *http.Request) {
+	if err := db.DeleteHousingByID(uuid.MustParse(mux.Vars(r)["housing_id"])); err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		var badRequest *models.BadRequest
+		json.NewEncoder(w).Encode(badRequest.GetError("An error occurred during housing update"))
+
+		return
+	}
+
+	w.WriteHeader(http.StatusNoContent)
+}

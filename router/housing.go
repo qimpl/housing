@@ -18,6 +18,10 @@ func createHousingRouter(router *mux.Router) {
 		Methods("GET")
 
 	housingRouter.
+		HandleFunc("/{housing_id:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}}", handlers.DeleteHousingByID).
+		Methods("DELETE")
+
+	housingRouter.
 		HandleFunc("/{housing_type_id:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}}", handlers.GetAllHousingByType).
 		Methods("GET")
 
