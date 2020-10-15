@@ -2,6 +2,7 @@ package db
 
 import (
 	"github.com/qimpl/housing/models"
+	"github.com/qimpl/housing/utils"
 
 	"github.com/google/uuid"
 )
@@ -46,4 +47,26 @@ func DeleteHousingByID(housingID uuid.UUID) error {
 	}
 
 	return nil
+}
+
+// UpdateHousingByID update a given housing
+func UpdateHousingByID(housing *models.Housing, updatedHousing *models.HousingBody) (*models.Housing, error) {
+	utils.MergeStruct(housing, updatedHousing)
+
+	if _, err := Db.Model(housing).Where("id = ?", housing.ID).Update(); err != nil {
+		return nil, err
+	}
+
+	return housing, nil
+}
+
+// GetHousingByID find a housing inside the database with its ID
+func GetHousingByID(housingID uuid.UUID) (*models.Housing, error) {
+	housing := &models.Housing{ID: housingID}
+
+	if err := Db.Select(housing); err != nil {
+		return nil, err
+	}
+
+	return housing, nil
 }
