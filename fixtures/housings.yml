@@ -7,6 +7,7 @@
   city: Lille
   zip: 59800
   street: 30 Rue Solférino
+  has_electricity: true
   owner_id: RAW=gen_random_uuid()
   last_tenant_id: RAW=gen_random_uuid()
   status_id: 6c7de9e6-eddd-4139-bda7-5852beff8b49
@@ -21,6 +22,8 @@
   zip: 59500
   street: 2 Rue Deforest
   is_furnished: true
+  has_electricity: true
+  has_gas: true
   owner_id: RAW=gen_random_uuid()
   last_tenant_id: RAW=gen_random_uuid()
   status_id: a04e7587-87a1-4d5a-81c8-286a5fceee39
@@ -34,6 +37,8 @@
   city: Arras
   zip: 62000
   street: 89 Rue Méaulens
+  has_electricity: true
+  has_gas: true
   owner_id: RAW=gen_random_uuid()
   last_tenant_id: RAW=gen_random_uuid()
   status_id: f2625e4e-d06b-4ee5-ae99-258493643702
