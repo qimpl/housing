@@ -83,8 +83,8 @@ paths:
           description: OK
           schema:
             type: string
-        "404":
-          description: Not Found
+        "400":
+          description: Bad Request
           schema:
             type: string
       summary: Get all housing
@@ -131,8 +131,8 @@ paths:
           description: OK
           schema:
             type: string
-        "404":
-          description: Not Found
+        "400":
+          description: Bad Request
           schema:
             type: string
       summary: Get all housing by type

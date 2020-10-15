@@ -15,22 +15,26 @@ import (
 // @Produce json
 // @Param type body models.HousingType true "Housing type data"
 // @Success 200 {string} models.HousingType
-// @Failure 400 {string} string
-// @Failure 422 {string} string
+// @Failure 400 {string} models.ErrorResponse
+// @Failure 422 {string} models.ErrorResponse
 // @Router /housing/type [post]
 func CreateHousingType(w http.ResponseWriter, r *http.Request) {
 	var housingType *models.HousingType
 
 	if err := json.NewDecoder(r.Body).Decode(&housingType); err != nil {
 		w.WriteHeader(http.StatusUnprocessableEntity)
-		json.NewEncoder(w).Encode("Body malformed data")
+		var unprocessableEntity *models.UnprocessableEntity
+		json.NewEncoder(w).Encode(unprocessableEntity.GetError("Malformed body"))
+
 		return
 	}
 
 	housingType, err := db.CreateHousingType(housingType)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
-		json.NewEncoder(w).Encode("Housing type creation failed")
+		var badRequest *models.BadRequest
+		json.NewEncoder(w).Encode(badRequest.GetError("Housing type creation failed"))
+
 		return
 	}
 
@@ -44,13 +48,14 @@ func CreateHousingType(w http.ResponseWriter, r *http.Request) {
 // @Description Search all housing types
 // @Produce json
 // @Success 200 {string} []models.HousingType
-// @Failure 400 {string} string
+// @Failure 400 {string} models.ErrorResponse
 // @Router /housing/type [get]
 func GetAllHousingTypes(w http.ResponseWriter, r *http.Request) {
 	housingTypes, err := db.GetAllHousingTypes()
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
-		json.NewEncoder(w).Encode("An error occurred during housing types retrieval")
+		var badRequest *models.BadRequest
+		json.NewEncoder(w).Encode(badRequest.GetError("An error occurred during housing types retrieval"))
 
 		return
 	}
