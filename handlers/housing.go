@@ -2,7 +2,6 @@ package handlers
 
 import (
 	"encoding/json"
-	"log"
 	"net/http"
 
 	"github.com/qimpl/housing/db"
@@ -19,26 +18,26 @@ import (
 // @Produce json
 // @Param housing body models.Housing true "Housing data"
 // @Success 200 {string} models.Housing
-// @Failure 400 {string} string
-// @Failure 422 {string} string
+// @Failure 400 {string} models.ErrorResponse
+// @Failure 422 {string} models.ErrorResponse
 // @Router /housing [post]
 func CreateHousing(w http.ResponseWriter, r *http.Request) {
 	var housing *models.Housing
 
 	if err := json.NewDecoder(r.Body).Decode(&housing); err != nil {
 		w.WriteHeader(http.StatusUnprocessableEntity)
-		log.Println(err)
-		json.NewEncoder(w).Encode("Body malformed data")
+		var unprocessableEntity *models.UnprocessableEntity
+		json.NewEncoder(w).Encode(unprocessableEntity.GetError("Body malformed data"))
+
 		return
 	}
-
-	log.Println(housing)
 
 	housing, err := db.CreateHousing(housing)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
-		log.Println(err)
-		json.NewEncoder(w).Encode("Housing creation failed")
+		var badRequest *models.BadRequest
+		json.NewEncoder(w).Encode(badRequest.GetError("Housing creation failed"))
+
 		return
 	}
 
@@ -52,13 +51,14 @@ func CreateHousing(w http.ResponseWriter, r *http.Request) {
 // @Description Search all housing
 // @Produce json
 // @Success 200 {string} []models.Housing
-// @Failure 404 {string} string
+// @Failure 400 {string} models.ErrorResponse
 // @Router /housing [get]
 func GetAllHousing(w http.ResponseWriter, r *http.Request) {
 	housing, err := db.GetAllHousing()
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
-		json.NewEncoder(w).Encode("An error occurred during housing retrieval")
+		var badRequest *models.BadRequest
+		json.NewEncoder(w).Encode(badRequest.GetError("An error occurred during housing retrieval"))
 
 		return
 	}
@@ -73,7 +73,7 @@ func GetAllHousing(w http.ResponseWriter, r *http.Request) {
 // @Produce json
 // @Param housing_type_id path string true "Housing type ID"
 // @Success 200 {string} []models.Housing
-// @Failure 404 {string} string
+// @Failure 400 {string} models.ErrorResponse
 // @Router /housing/{housing_type_id} [get]
 func GetAllHousingByType(w http.ResponseWriter, r *http.Request) {
 	housingTypeID := mux.Vars(r)["housing_type_id"]
@@ -81,7 +81,8 @@ func GetAllHousingByType(w http.ResponseWriter, r *http.Request) {
 	housing, err := db.GetHousingByType(uuid.MustParse(housingTypeID))
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
-		json.NewEncoder(w).Encode("An error occurred during housing retrieval")
+		var badRequest *models.BadRequest
+		json.NewEncoder(w).Encode(badRequest.GetError("An error occurred during housing retrieval"))
 
 		return
 	}

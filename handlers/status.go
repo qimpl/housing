@@ -15,22 +15,26 @@ import (
 // @Produce json
 // @Param status body models.Status true "Housing status data"
 // @Success 200 {string} models.Status
-// @Failure 400 {string} string
-// @Failure 422 {string} string
+// @Failure 400 {string} models.ErrorResponse
+// @Failure 422 {string} models.ErrorResponse
 // @Router /housing/status [post]
 func CreateHousingStatus(w http.ResponseWriter, r *http.Request) {
 	var housingStatus *models.Status
 
 	if err := json.NewDecoder(r.Body).Decode(&housingStatus); err != nil {
 		w.WriteHeader(http.StatusUnprocessableEntity)
-		json.NewEncoder(w).Encode("Body malformed data")
+		var unprocessableEntity *models.UnprocessableEntity
+		json.NewEncoder(w).Encode(unprocessableEntity.GetError("Malformed body"))
+
 		return
 	}
 
 	housingStatus, err := db.CreateHousingStatus(housingStatus)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
-		json.NewEncoder(w).Encode("Housing status creation failed")
+		var badRequest *models.BadRequest
+		json.NewEncoder(w).Encode(badRequest.GetError("Housing status creation failed"))
+
 		return
 	}
 
@@ -44,13 +48,14 @@ func CreateHousingStatus(w http.ResponseWriter, r *http.Request) {
 // @Description Search all housing statuses
 // @Produce json
 // @Success 200 {string} []models.Status
-// @Failure 400 {string} string
+// @Failure 400 {string} models.ErrorResponse
 // @Router /housing/status [get]
 func GetAllHousingStatuses(w http.ResponseWriter, r *http.Request) {
 	housingStatuses, err := db.GetAllHousingStatuses()
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
-		json.NewEncoder(w).Encode("An error occurred during housing statuses retrieval")
+		var badRequest *models.BadRequest
+		json.NewEncoder(w).Encode(badRequest.GetError("An error occurred during housing statuses retrieval"))
 
 		return
 	}
