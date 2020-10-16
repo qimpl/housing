@@ -62,11 +62,20 @@ func UpdateHousingByID(housing *models.Housing, updatedHousing *models.HousingBo
 
 // GetHousingByID find a housing inside the database with its ID
 func GetHousingByID(housingID uuid.UUID) (*models.Housing, error) {
-	housing := &models.Housing{ID: housingID}
+	housing := new(models.Housing)
 
-	if err := Db.Select(housing); err != nil {
+	if err := Db.Model(housing).Where("id = ?", housingID).Select(); err != nil {
 		return nil, err
 	}
 
 	return housing, nil
+}
+
+// UpdateHousingStatus updates the status ID of a given housing
+func UpdateHousingStatus(housingID, statusID uuid.UUID) error {
+	housing := new(models.Housing)
+
+	_, err := Db.Model(housing).Set("status_id = ?", statusID).Where("id = ?", housingID).Update()
+
+	return err
 }

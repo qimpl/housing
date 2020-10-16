@@ -108,6 +108,12 @@ definitions:
         example: sold
         type: string
     type: object
+  models.UpdateStatusBody:
+    properties:
+      status_id:
+        example: e185deb2-91d5-4ab7-87b3-daaffac00e3d
+        type: string
+    type: object
 info:
   contact: {}
   license: {}
@@ -221,6 +227,38 @@ paths:
           schema:
             type: string
       summary: Update a housing by ID
+  /housing/{housing_id}/status:
+    put:
+      consumes:
+      - application/json
+      description: Update the status of a given housing
+      parameters:
+      - description: Housing ID
+        in: path
+        name: housing_id
+        required: true
+        type: string
+      - description: Status ID
+        in: body
+        name: status
+        required: true
+        schema:
+          $ref: '#/definitions/models.UpdateStatusBody'
+      responses:
+        "204": {}
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+        "422":
+          description: Unprocessable Entity
+          schema:
+            type: string
+      summary: Update status of housing
   /housing/{housing_type_id}:
     get:
       description: Search all housing of a given type
