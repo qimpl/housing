@@ -238,6 +238,60 @@ var doc = `{
             }
         },
         "/housing/{housing_id}": {
+            "put": {
+                "description": "Update a given housing by ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Update a housing by ID",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Housing ID",
+                        "name": "housing_id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Housing data",
+                        "name": "housing",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.HousingBody"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
             "delete": {
                 "description": "Delete a given housing by ID",
                 "summary": "Delete a housing by ID",
@@ -302,6 +356,71 @@ var doc = `{
     },
     "definitions": {
         "models.Housing": {
+            "type": "object",
+            "properties": {
+                "city": {
+                    "type": "string",
+                    "example": "Lille"
+                },
+                "country": {
+                    "type": "string",
+                    "example": "FR"
+                },
+                "has_electricity": {
+                    "type": "boolean",
+                    "example": true
+                },
+                "has_gas": {
+                    "type": "boolean",
+                    "example": false
+                },
+                "is_furnished": {
+                    "type": "boolean",
+                    "example": false
+                },
+                "last_tenant_id": {
+                    "type": "string",
+                    "example": "e185deb2-91d5-4ab7-87b3-daaffac00e3d"
+                },
+                "owner_id": {
+                    "type": "string",
+                    "example": "e185deb2-91d5-4ab7-87b3-daaffac00e3d"
+                },
+                "rent_price": {
+                    "type": "number",
+                    "example": 60.95
+                },
+                "rental_charges": {
+                    "type": "number",
+                    "example": 60.9
+                },
+                "state": {
+                    "type": "string",
+                    "example": "Haut-de-France"
+                },
+                "status_id": {
+                    "type": "string",
+                    "example": "e185deb2-91d5-4ab7-87b3-daaffac00e3d"
+                },
+                "street": {
+                    "type": "string",
+                    "example": "78 Rue Solférino"
+                },
+                "surface_area": {
+                    "type": "number",
+                    "example": 15.5
+                },
+                "type_id": {
+                    "type": "string",
+                    "example": "e185deb2-91d5-4ab7-87b3-daaffac00e3d"
+                },
+                "zip": {
+                    "type": "string",
+                    "example": "59000"
+                }
+            }
+        },
+        "models.HousingBody": {
             "type": "object",
             "properties": {
                 "city": {

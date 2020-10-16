@@ -48,6 +48,54 @@ definitions:
         example: "59000"
         type: string
     type: object
+  models.HousingBody:
+    properties:
+      city:
+        example: Lille
+        type: string
+      country:
+        example: FR
+        type: string
+      has_electricity:
+        example: true
+        type: boolean
+      has_gas:
+        example: false
+        type: boolean
+      is_furnished:
+        example: false
+        type: boolean
+      last_tenant_id:
+        example: e185deb2-91d5-4ab7-87b3-daaffac00e3d
+        type: string
+      owner_id:
+        example: e185deb2-91d5-4ab7-87b3-daaffac00e3d
+        type: string
+      rent_price:
+        example: 60.95
+        type: number
+      rental_charges:
+        example: 60.9
+        type: number
+      state:
+        example: Haut-de-France
+        type: string
+      status_id:
+        example: e185deb2-91d5-4ab7-87b3-daaffac00e3d
+        type: string
+      street:
+        example: 78 Rue Solférino
+        type: string
+      surface_area:
+        example: 15.5
+        type: number
+      type_id:
+        example: e185deb2-91d5-4ab7-87b3-daaffac00e3d
+        type: string
+      zip:
+        example: "59000"
+        type: string
+    type: object
   models.HousingType:
     properties:
       name:
@@ -137,6 +185,42 @@ paths:
           schema:
             type: string
       summary: Delete a housing by ID
+    put:
+      consumes:
+      - application/json
+      description: Update a given housing by ID
+      parameters:
+      - description: Housing ID
+        in: path
+        name: housing_id
+        required: true
+        type: string
+      - description: Housing data
+        in: body
+        name: housing
+        required: true
+        schema:
+          $ref: '#/definitions/models.HousingBody'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+        "422":
+          description: Unprocessable Entity
+          schema:
+            type: string
+      summary: Update a housing by ID
   /housing/{housing_type_id}:
     get:
       description: Search all housing of a given type
