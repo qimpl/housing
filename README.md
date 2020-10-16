@@ -1,15 +1,39 @@
-# Golang Web API Template
+# Housing API
+
+Manage housings through HTTP.
+
+Part of the main qimpl application.
 
 ## API Documentation
 
 Swagger API documentation can be found at `/api/v1/swagger`
 
-## Getting started
+### Generate Documentation
 
-You need to execute `config.sh` before any action on this template. This script take one arg that is the project name.
+The Swagger API needs to be generated when modifications are done.
+
+Run the next command to update this documentation:
 
 ```sh
-$ ./config.sh my-super-api
+# swaggo/swag cli is required
+# go get -u github.com/swaggo/swag/cmd/swag
+$ swag init
 ```
 
-After that, you can run `make init` to copy all configuration files, then you can run `docker-compose up`.
+## Getting started
+
+Run `make init` to copy all configuration files
+
+Then you can run:
+
+```sh
+$ docker-compose up
+```
+
+## Code Quality
+
+Check and fix your code using:
+
+```sh
+$ make coding-style
+```
