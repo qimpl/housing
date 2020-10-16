@@ -1,6 +1,7 @@
 package db
 
 import (
+	"github.com/google/uuid"
 	"github.com/qimpl/housing/models"
 )
 
@@ -22,4 +23,15 @@ func GetAllHousingStatuses() ([]models.Status, error) {
 	}
 
 	return housingStatuses, nil
+}
+
+// GetStatusByID find a status inside the database with its ID
+func GetStatusByID(statusID uuid.UUID) (*models.Status, error) {
+	status := new(models.Status)
+
+	if err := Db.Model(status).Where("id = ?", statusID).Select(); err != nil {
+		return nil, err
+	}
+
+	return status, nil
 }

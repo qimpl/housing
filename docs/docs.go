@@ -315,6 +315,54 @@ var doc = `{
                 }
             }
         },
+        "/housing/{housing_id}/status": {
+            "put": {
+                "description": "Update the status of a given housing",
+                "consumes": [
+                    "application/json"
+                ],
+                "summary": "Update status of housing",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Housing ID",
+                        "name": "housing_id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Status ID",
+                        "name": "status",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.UpdateStatusBody"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {},
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
         "/housing/{housing_type_id}": {
             "get": {
                 "description": "Search all housing of a given type",
@@ -500,6 +548,15 @@ var doc = `{
                 "name": {
                     "type": "string",
                     "example": "sold"
+                }
+            }
+        },
+        "models.UpdateStatusBody": {
+            "type": "object",
+            "properties": {
+                "status_id": {
+                    "type": "string",
+                    "example": "e185deb2-91d5-4ab7-87b3-daaffac00e3d"
                 }
             }
         }

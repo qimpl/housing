@@ -14,3 +14,8 @@ type Status struct {
 	CreatedAt time.Time `json:"created_at,omitempty" swaggerignore:"true" example:"1977-04-22T06:00:00Z"`
 	UpdatedAt time.Time `json:"updated_at,omitempty" swaggerignore:"true" example:"1977-04-22T06:00:00Z"`
 }
+
+// UpdateStatusBody is the representation of the housing status update request body
+type UpdateStatusBody struct {
+	StatusID uuid.UUID `json:"status_id" example:"e185deb2-91d5-4ab7-87b3-daaffac00e3d"`
+}

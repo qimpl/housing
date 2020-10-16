@@ -167,3 +167,60 @@ func UpdateHousingByID(w http.ResponseWriter, r *http.Request) {
 
 	json.NewEncoder(w).Encode(housing)
 }
+
+// UpdateHousingStatus update the status a given housing
+// @Summary Update status of housing
+// @Description Update the status of a given housing
+// @Accept json
+// @Param housing_id path string true "Housing ID"
+// @Param status body models.UpdateStatusBody true "Status ID"
+// @Success 204 ""
+// @Failure 400 {string} models.ErrorResponse
+// @Failure 404 {string} models.ErrorResponse
+// @Failure 422 {string} models.ErrorResponse
+// @Router /housing/{housing_id}/status [put]
+func UpdateHousingStatus(w http.ResponseWriter, r *http.Request) {
+	var body *models.UpdateStatusBody
+	housingID := uuid.MustParse(mux.Vars(r)["housing_id"])
+
+	decoder := json.NewDecoder(r.Body)
+	decoder.DisallowUnknownFields()
+
+	if err := decoder.Decode(&body); err != nil {
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusUnprocessableEntity)
+		var unprocessableEntity *models.UnprocessableEntity
+		json.NewEncoder(w).Encode(unprocessableEntity.GetError("Body malformed data"))
+
+		return
+	}
+
+	if _, err := db.GetHousingByID(housingID); err != nil {
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusNotFound)
+		var notFound *models.NotFound
+		json.NewEncoder(w).Encode(notFound.GetError("The given housing ID doesn't exist"))
+
+		return
+	}
+
+	if _, err := db.GetStatusByID(body.StatusID); err != nil {
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusNotFound)
+		var notFound *models.NotFound
+		json.NewEncoder(w).Encode(notFound.GetError("The given status ID doesn't exist"))
+
+		return
+	}
+
+	if err := db.UpdateHousingStatus(housingID, body.StatusID); err != nil {
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusBadRequest)
+		var badRequest *models.BadRequest
+		json.NewEncoder(w).Encode(badRequest.GetError("An error occurred during housing status update"))
+
+		return
+	}
+
+	w.WriteHeader(http.StatusNoContent)
+}

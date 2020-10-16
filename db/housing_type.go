@@ -27,9 +27,9 @@ func GetAllHousingTypes() ([]models.HousingType, error) {
 
 // GetHousingTypeByID get a housings type from the database with a given ID
 func GetHousingTypeByID(housingTypeID uuid.UUID) (*models.HousingType, error) {
-	housingType := &models.HousingType{ID: housingTypeID}
+	housingType := new(models.HousingType)
 
-	if err := Db.Select(housingType); err != nil {
+	if err := Db.Model(housingType).Where("id = ?", housingTypeID).Select(); err != nil {
 		return nil, err
 	}
 
