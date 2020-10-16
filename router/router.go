@@ -29,6 +29,9 @@ func CreateRouter() {
 	c := cors.New(cors.Options{
 		AllowedMethods: []string{
 			http.MethodGet,
+			http.MethodPost,
+			http.MethodPut,
+			http.MethodDelete,
 		},
 	})
 
