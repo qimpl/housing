@@ -237,7 +237,75 @@ var doc = `{
                 }
             }
         },
+        "/housing/type/{housing_type_id}": {
+            "get": {
+                "description": "Search all housing of a given type",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Get all housing by type",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Housing type ID",
+                        "name": "housing_type_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
         "/housing/{housing_id}": {
+            "get": {
+                "description": "Search for a given housing with its ID",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Get a housing by ID",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Housing ID",
+                        "name": "housing_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
             "put": {
                 "description": "Update a given housing by ID",
                 "consumes": [
@@ -356,44 +424,6 @@ var doc = `{
                     },
                     "422": {
                         "description": "Unprocessable Entity",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
-        "/housing/{housing_type_id}": {
-            "get": {
-                "description": "Search all housing of a given type",
-                "produces": [
-                    "application/json"
-                ],
-                "summary": "Get all housing by type",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "Housing type ID",
-                        "name": "housing_type_id",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
                         "schema": {
                             "type": "string"
                         }

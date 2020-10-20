@@ -67,39 +67,6 @@ func GetAllHousing(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(housing)
 }
 
-// GetAllHousingByType returns all the housing with a given type found on the request response
-// @Summary Get all housing by type
-// @Description Search all housing of a given type
-// @Produce json
-// @Param housing_type_id path string true "Housing type ID"
-// @Success 200 {string} []models.Housing
-// @Failure 400 {string} models.ErrorResponse
-// @Failure 404 {string} models.ErrorResponse
-// @Router /housing/{housing_type_id} [get]
-func GetAllHousingByType(w http.ResponseWriter, r *http.Request) {
-	validUUID := uuid.MustParse(mux.Vars(r)["housing_type_id"])
-
-	if housingType, _ := db.GetHousingTypeByID(validUUID); housingType == nil {
-		w.WriteHeader(http.StatusNotFound)
-		var notFound *models.NotFound
-		json.NewEncoder(w).Encode(notFound.GetError("The given housing type ID doesn't exist"))
-
-		return
-	}
-
-	housing, err := db.GetHousingByType(validUUID)
-	if err != nil {
-		w.WriteHeader(http.StatusBadRequest)
-		var badRequest *models.BadRequest
-		json.NewEncoder(w).Encode(badRequest.GetError("An error occurred during housing retrieval"))
-
-		return
-	}
-
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(housing)
-}
-
 // DeleteHousingByID delete a given housing with its ID
 // @Summary Delete a housing by ID
 // @Description Delete a given housing by ID
@@ -223,4 +190,27 @@ func UpdateHousingStatus(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.WriteHeader(http.StatusNoContent)
+}
+
+// GetHousingByID returns a given housing with a given ID found on the request response
+// @Summary Get a housing by ID
+// @Description Search for a given housing with its ID
+// @Produce json
+// @Param housing_id path string true "Housing ID"
+// @Success 200 {string} models.Housing
+// @Failure 400 {string} models.ErrorResponse
+// @Router /housing/{housing_id} [get]
+func GetHousingByID(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+
+	housing, err := db.GetHousingByID(uuid.MustParse(mux.Vars(r)["housing_id"]))
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		var badRequest *models.BadRequest
+		json.NewEncoder(w).Encode(badRequest.GetError("An error occurred during housing retrieval"))
+
+		return
+	}
+
+	json.NewEncoder(w).Encode(housing)
 }
