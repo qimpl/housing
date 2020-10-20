@@ -14,7 +14,8 @@ func createHousingRouter(router *mux.Router) {
 		Methods("POST")
 
 	housingRouter.
-		HandleFunc("", handlers.GetAllHousing).
+		HandleFunc("", handlers.GetHousings).
+		Queries("per_page", "{per_page:[0-9]+}").
 		Methods("GET")
 
 	housingRouter.

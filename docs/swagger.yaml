@@ -136,6 +136,16 @@ paths:
   /housing:
     get:
       description: Search all housing
+      parameters:
+      - description: Per page limit
+        in: path
+        name: per_page
+        required: true
+        type: string
+      - description: Previous request response Pagination-Cursor value
+        in: path
+        name: cursor
+        type: string
       produces:
       - application/json
       responses:
