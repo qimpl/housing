@@ -2,10 +2,14 @@ package handlers
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
+	"os"
+	"strconv"
 
 	"github.com/qimpl/housing/db"
 	"github.com/qimpl/housing/models"
+	"github.com/qimpl/housing/utils"
 
 	"github.com/google/uuid"
 	"github.com/gorilla/mux"
@@ -46,15 +50,32 @@ func CreateHousing(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(housing)
 }
 
-// GetAllHousing returns all the housing found on the request response
+// GetHousings returns all the housings found on the database
 // @Summary Get all housing
 // @Description Search all housing
 // @Produce json
+// @Param per_page path string true "Per page limit"
+// @Param cursor path string false "Previous request response Pagination-Cursor value"
 // @Success 200 {string} []models.Housing
 // @Failure 400 {string} models.ErrorResponse
 // @Router /housing [get]
-func GetAllHousing(w http.ResponseWriter, r *http.Request) {
-	housing, err := db.GetAllHousing()
+func GetHousings(w http.ResponseWriter, r *http.Request) {
+	perPage, _ := strconv.Atoi(r.URL.Query().Get("per_page"))
+
+	var cursor *models.Cursor
+	var err error
+
+	if cursorParam := r.URL.Query().Get("cursor"); cursorParam != "" {
+		cursor, err = utils.DecodeCursor(cursorParam)
+
+		if err != nil {
+			w.WriteHeader(http.StatusBadRequest)
+			var badRequest *models.BadRequest
+			json.NewEncoder(w).Encode(badRequest.GetError(err.Error()))
+		}
+	}
+
+	housing, err := db.GetHousings(perPage, cursor)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		var badRequest *models.BadRequest
@@ -62,6 +83,21 @@ func GetAllHousing(w http.ResponseWriter, r *http.Request) {
 
 		return
 	}
+
+	nextCursor := utils.EncodeCursor(housing[len(housing)-1].ID, housing[len(housing)-1].CreatedAt)
+	paginationHeader := models.PaginationHeaders{
+		Link: []string{
+			fmt.Sprintf(
+				"<%s/housing?per_page=%d&cursor=%s>; rel=\"next\"",
+				os.Getenv("API_ENDPOINT"),
+				perPage,
+				nextCursor,
+			),
+		},
+		Cursor: nextCursor,
+	}
+
+	utils.WritePaginationHeaders(w, &paginationHeader)
 
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(housing)

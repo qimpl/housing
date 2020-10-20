@@ -16,11 +16,17 @@ func CreateHousing(housing *models.Housing) (*models.Housing, error) {
 	return housing, nil
 }
 
-// GetAllHousing get all housings from the database
-func GetAllHousing() ([]models.Housing, error) {
+// GetHousings get all housings from the database
+func GetHousings(limit int, cursor *models.Cursor) ([]models.Housing, error) {
 	var housing []models.Housing
 
-	if err := Db.Model(&housing).Order("created_at").Select(); err != nil {
+	query := Db.Model(&housing)
+
+	if cursor != nil {
+		query.Where("created_at <= ?", &cursor.CreatedAt).Where("id < ?", &cursor.ID)
+	}
+
+	if err := query.Order("created_at DESC").Limit(limit).Select(); err != nil {
 		return nil, err
 	}
 

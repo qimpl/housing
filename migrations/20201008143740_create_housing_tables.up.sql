@@ -42,6 +42,8 @@ CREATE TABLE "housings" (
   "updated_at" timestamp DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE INDEX idx_housings_pagination ON housings (created_at, id);
+
 CREATE TRIGGER update_timestamp
   BEFORE UPDATE ON "housings"
   FOR EACH ROW

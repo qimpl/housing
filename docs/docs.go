@@ -52,6 +52,21 @@ var doc = `{
                     "application/json"
                 ],
                 "summary": "Get all housing",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Per page limit",
+                        "name": "per_page",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Previous request response Pagination-Cursor value",
+                        "name": "cursor",
+                        "in": "path"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",

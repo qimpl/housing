@@ -11,6 +11,7 @@
   owner_id: RAW=gen_random_uuid()
   last_tenant_id: RAW=gen_random_uuid()
   status_id: 6c7de9e6-eddd-4139-bda7-5852beff8b49
+  created_at: 2020-10-16 23:59:59
 
 - type_id: 58fc4ce6-3509-4185-845f-3d9ccda6469a
   surface_area: 45
@@ -27,6 +28,7 @@
   owner_id: RAW=gen_random_uuid()
   last_tenant_id: RAW=gen_random_uuid()
   status_id: a04e7587-87a1-4d5a-81c8-286a5fceee39
+  created_at: 2020-10-17 23:59:59
 
 - type_id: 58fc4ce6-3509-4185-845f-3d9ccda6469a
   surface_area: 86.4
@@ -42,6 +44,7 @@
   owner_id: RAW=gen_random_uuid()
   last_tenant_id: RAW=gen_random_uuid()
   status_id: f2625e4e-d06b-4ee5-ae99-258493643702
+  created_at: 2020-10-18 23:59:59
 
 - type_id: 45a74d6b-1249-4c30-9ccd-6d4a3777b794
   surface_area: 13
@@ -55,3 +58,100 @@
   owner_id: RAW=gen_random_uuid()
   last_tenant_id: RAW=gen_random_uuid()
   status_id: a04e7587-87a1-4d5a-81c8-286a5fceee39
+  created_at: 2020-10-19 23:59:59
+
+- type_id: 58fc4ce6-3509-4185-845f-3d9ccda6469a
+  surface_area: 86.4
+  rent_price: 956.50
+  rental_charges: 95
+  country: FR
+  state: Pas-de-Calais
+  city: Arras
+  zip: 62000
+  street: 89 Rue Méaulens
+  has_electricity: true
+  has_gas: true
+  owner_id: RAW=gen_random_uuid()
+  last_tenant_id: RAW=gen_random_uuid()
+  status_id: f2625e4e-d06b-4ee5-ae99-258493643702
+  created_at: 2020-10-15 23:59:59
+
+- type_id: 58fc4ce6-3509-4185-845f-3d9ccda6469a
+  surface_area: 86.4
+  rent_price: 956.50
+  rental_charges: 95
+  country: FR
+  state: Pas-de-Calais
+  city: Arras
+  zip: 62000
+  street: 89 Rue Méaulens
+  has_electricity: true
+  has_gas: true
+  owner_id: RAW=gen_random_uuid()
+  last_tenant_id: RAW=gen_random_uuid()
+  status_id: f2625e4e-d06b-4ee5-ae99-258493643702
+  created_at: 2020-10-14 23:59:59
+
+- type_id: 58fc4ce6-3509-4185-845f-3d9ccda6469a
+  surface_area: 86.4
+  rent_price: 956.50
+  rental_charges: 95
+  country: FR
+  state: Pas-de-Calais
+  city: Arras
+  zip: 62000
+  street: 89 Rue Méaulens
+  has_electricity: true
+  has_gas: true
+  owner_id: RAW=gen_random_uuid()
+  last_tenant_id: RAW=gen_random_uuid()
+  status_id: f2625e4e-d06b-4ee5-ae99-258493643702
+  created_at: 2020-10-13 23:59:59
+
+- type_id: 58fc4ce6-3509-4185-845f-3d9ccda6469a
+  surface_area: 86.4
+  rent_price: 956.50
+  rental_charges: 95
+  country: FR
+  state: Pas-de-Calais
+  city: Arras
+  zip: 62000
+  street: 89 Rue Méaulens
+  has_electricity: true
+  has_gas: true
+  owner_id: RAW=gen_random_uuid()
+  last_tenant_id: RAW=gen_random_uuid()
+  status_id: f2625e4e-d06b-4ee5-ae99-258493643702
+  created_at: 2020-10-12 23:59:59
+
+- type_id: 58fc4ce6-3509-4185-845f-3d9ccda6469a
+  surface_area: 86.4
+  rent_price: 956.50
+  rental_charges: 95
+  country: FR
+  state: Pas-de-Calais
+  city: Arras
+  zip: 62000
+  street: 89 Rue Méaulens
+  has_electricity: true
+  has_gas: true
+  owner_id: RAW=gen_random_uuid()
+  last_tenant_id: RAW=gen_random_uuid()
+  status_id: f2625e4e-d06b-4ee5-ae99-258493643702
+  created_at: 2020-10-11 23:59:59
+
+- type_id: 58fc4ce6-3509-4185-845f-3d9ccda6469a
+  surface_area: 86.4
+  rent_price: 956.50
+  rental_charges: 95
+  country: FR
+  state: Pas-de-Calais
+  city: Arras
+  zip: 62000
+  street: 89 Rue Méaulens
+  has_electricity: true
+  has_gas: true
+  owner_id: RAW=gen_random_uuid()
+  last_tenant_id: RAW=gen_random_uuid()
+  status_id: f2625e4e-d06b-4ee5-ae99-258493643702
+  created_at: 2020-10-10 23:59:59
