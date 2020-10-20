@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"net/http"
 
+	"github.com/google/uuid"
+	"github.com/gorilla/mux"
 	"github.com/qimpl/housing/db"
 	"github.com/qimpl/housing/models"
 )
@@ -62,4 +64,37 @@ func GetAllHousingTypes(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(housingTypes)
+}
+
+// GetAllHousingByType returns all the housing with a given type found on the request response
+// @Summary Get all housing by type
+// @Description Search all housing of a given type
+// @Produce json
+// @Param housing_type_id path string true "Housing type ID"
+// @Success 200 {string} []models.Housing
+// @Failure 400 {string} models.ErrorResponse
+// @Failure 404 {string} models.ErrorResponse
+// @Router /housing/type/{housing_type_id} [get]
+func GetAllHousingByType(w http.ResponseWriter, r *http.Request) {
+	validUUID := uuid.MustParse(mux.Vars(r)["housing_type_id"])
+
+	if housingType, _ := db.GetHousingTypeByID(validUUID); housingType == nil {
+		w.WriteHeader(http.StatusNotFound)
+		var notFound *models.NotFound
+		json.NewEncoder(w).Encode(notFound.GetError("The given housing type ID doesn't exist"))
+
+		return
+	}
+
+	housing, err := db.GetHousingByType(validUUID)
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		var badRequest *models.BadRequest
+		json.NewEncoder(w).Encode(badRequest.GetError("An error occurred during housing retrieval"))
+
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(housing)
 }
