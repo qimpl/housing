@@ -30,26 +30,6 @@ func createHousingRouter(router *mux.Router) {
 		Methods("PUT")
 
 	housingRouter.
-		HandleFunc("/type", handlers.CreateHousingType).
-		Methods("POST")
-
-	housingRouter.
-		HandleFunc("/type", handlers.GetAllHousingTypes).
-		Methods("GET")
-
-	housingRouter.
-		HandleFunc("/type/{housing_type_id:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}}", handlers.GetAllHousingByType).
-		Methods("GET")
-
-	housingRouter.
-		HandleFunc("/status", handlers.CreateHousingStatus).
-		Methods("POST")
-
-	housingRouter.
-		HandleFunc("/status", handlers.GetAllHousingStatuses).
-		Methods("GET")
-
-	housingRouter.
 		HandleFunc("/{housing_id:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}}/status", handlers.UpdateHousingStatus).
 		Methods("PUT")
 }

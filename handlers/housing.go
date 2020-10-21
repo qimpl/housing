@@ -14,6 +14,7 @@ import (
 // CreateHousing insert a new housing inside the database
 // @Summary Insert a housing
 // @Description Create a new housing with given data
+// @Tags Housing
 // @Accept json
 // @Produce json
 // @Param housing body models.Housing true "Housing data"
@@ -49,6 +50,7 @@ func CreateHousing(w http.ResponseWriter, r *http.Request) {
 // GetAllHousing returns all the housing found on the request response
 // @Summary Get all housing
 // @Description Search all housing
+// @Tags Housing
 // @Produce json
 // @Success 200 {string} []models.Housing
 // @Failure 400 {string} models.ErrorResponse
@@ -70,6 +72,7 @@ func GetAllHousing(w http.ResponseWriter, r *http.Request) {
 // DeleteHousingByID delete a given housing with its ID
 // @Summary Delete a housing by ID
 // @Description Delete a given housing by ID
+// @Tags Housing
 // @Param housing_id path string true "Housing ID"
 // @Success 204 ""
 // @Failure 400 {string} models.ErrorResponse
@@ -89,6 +92,7 @@ func DeleteHousingByID(w http.ResponseWriter, r *http.Request) {
 // UpdateHousingByID update a given housing with its ID
 // @Summary Update a housing by ID
 // @Description Update a given housing by ID
+// @Tags Housing
 // @Accept json
 // @Produce json
 // @Param housing_id path string true "Housing ID"
@@ -138,6 +142,7 @@ func UpdateHousingByID(w http.ResponseWriter, r *http.Request) {
 // UpdateHousingStatus update the status a given housing
 // @Summary Update status of housing
 // @Description Update the status of a given housing
+// @Tags Housing
 // @Accept json
 // @Param housing_id path string true "Housing ID"
 // @Param status body models.UpdateStatusBody true "Status ID"
@@ -195,6 +200,7 @@ func UpdateHousingStatus(w http.ResponseWriter, r *http.Request) {
 // GetHousingByID returns a given housing with a given ID found on the request response
 // @Summary Get a housing by ID
 // @Description Search for a given housing with its ID
+// @Tags Housing
 // @Produce json
 // @Param housing_id path string true "Housing ID"
 // @Success 200 {string} models.Housing

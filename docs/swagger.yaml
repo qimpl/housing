@@ -120,19 +120,6 @@ info:
   title: Housing API
   version: 0.1.0
 paths:
-  /healthy:
-    get:
-      description: Check if the current API is alive
-      responses:
-        "200":
-          description: OK
-          schema:
-            type: string
-        "404":
-          description: Not Found
-          schema:
-            type: string
-      summary: Healthy Check
   /housing:
     get:
       description: Search all housing
@@ -148,6 +135,8 @@ paths:
           schema:
             type: string
       summary: Get all housing
+      tags:
+      - Housing
     post:
       consumes:
       - application/json
@@ -175,6 +164,8 @@ paths:
           schema:
             type: string
       summary: Insert a housing
+      tags:
+      - Housing
   /housing/{housing_id}:
     delete:
       description: Delete a given housing by ID
@@ -191,6 +182,8 @@ paths:
           schema:
             type: string
       summary: Delete a housing by ID
+      tags:
+      - Housing
     get:
       description: Search for a given housing with its ID
       parameters:
@@ -211,6 +204,8 @@ paths:
           schema:
             type: string
       summary: Get a housing by ID
+      tags:
+      - Housing
     put:
       consumes:
       - application/json
@@ -247,6 +242,8 @@ paths:
           schema:
             type: string
       summary: Update a housing by ID
+      tags:
+      - Housing
   /housing/{housing_id}/status:
     put:
       consumes:
@@ -279,6 +276,8 @@ paths:
           schema:
             type: string
       summary: Update status of housing
+      tags:
+      - Housing
   /housing/status:
     get:
       description: Search all housing statuses
@@ -294,6 +293,8 @@ paths:
           schema:
             type: string
       summary: Get all housing statuses
+      tags:
+      - Housing Status
     post:
       consumes:
       - application/json
@@ -321,6 +322,8 @@ paths:
           schema:
             type: string
       summary: Insert a housing status
+      tags:
+      - Housing Status
   /housing/type:
     get:
       description: Search all housing types
@@ -336,6 +339,8 @@ paths:
           schema:
             type: string
       summary: Get all housing types
+      tags:
+      - Housing Types
     post:
       consumes:
       - application/json
@@ -363,6 +368,8 @@ paths:
           schema:
             type: string
       summary: Insert a housing type
+      tags:
+      - Housing Types
   /housing/type/{housing_type_id}:
     get:
       description: Search all housing of a given type
@@ -388,4 +395,6 @@ paths:
           schema:
             type: string
       summary: Get all housing by type
+      tags:
+      - Housing Types
 swagger: "2.0"

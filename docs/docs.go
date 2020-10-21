@@ -25,31 +25,14 @@ var doc = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/healthy": {
-            "get": {
-                "description": "Check if the current API is alive",
-                "summary": "Healthy Check",
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
         "/housing": {
             "get": {
                 "description": "Search all housing",
                 "produces": [
                     "application/json"
+                ],
+                "tags": [
+                    "Housing"
                 ],
                 "summary": "Get all housing",
                 "responses": {
@@ -74,6 +57,9 @@ var doc = `{
                 ],
                 "produces": [
                     "application/json"
+                ],
+                "tags": [
+                    "Housing"
                 ],
                 "summary": "Insert a housing",
                 "parameters": [
@@ -115,6 +101,9 @@ var doc = `{
                 "produces": [
                     "application/json"
                 ],
+                "tags": [
+                    "Housing Status"
+                ],
                 "summary": "Get all housing statuses",
                 "responses": {
                     "200": {
@@ -138,6 +127,9 @@ var doc = `{
                 ],
                 "produces": [
                     "application/json"
+                ],
+                "tags": [
+                    "Housing Status"
                 ],
                 "summary": "Insert a housing status",
                 "parameters": [
@@ -179,6 +171,9 @@ var doc = `{
                 "produces": [
                     "application/json"
                 ],
+                "tags": [
+                    "Housing Types"
+                ],
                 "summary": "Get all housing types",
                 "responses": {
                     "200": {
@@ -202,6 +197,9 @@ var doc = `{
                 ],
                 "produces": [
                     "application/json"
+                ],
+                "tags": [
+                    "Housing Types"
                 ],
                 "summary": "Insert a housing type",
                 "parameters": [
@@ -243,6 +241,9 @@ var doc = `{
                 "produces": [
                     "application/json"
                 ],
+                "tags": [
+                    "Housing Types"
+                ],
                 "summary": "Get all housing by type",
                 "parameters": [
                     {
@@ -281,6 +282,9 @@ var doc = `{
                 "produces": [
                     "application/json"
                 ],
+                "tags": [
+                    "Housing"
+                ],
                 "summary": "Get a housing by ID",
                 "parameters": [
                     {
@@ -313,6 +317,9 @@ var doc = `{
                 ],
                 "produces": [
                     "application/json"
+                ],
+                "tags": [
+                    "Housing"
                 ],
                 "summary": "Update a housing by ID",
                 "parameters": [
@@ -362,6 +369,9 @@ var doc = `{
             },
             "delete": {
                 "description": "Delete a given housing by ID",
+                "tags": [
+                    "Housing"
+                ],
                 "summary": "Delete a housing by ID",
                 "parameters": [
                     {
@@ -388,6 +398,9 @@ var doc = `{
                 "description": "Update the status of a given housing",
                 "consumes": [
                     "application/json"
+                ],
+                "tags": [
+                    "Housing"
                 ],
                 "summary": "Update status of housing",
                 "parameters": [
