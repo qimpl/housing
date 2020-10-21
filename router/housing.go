@@ -32,4 +32,8 @@ func createHousingRouter(router *mux.Router) {
 	housingRouter.
 		HandleFunc("/{housing_id:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}}/status", handlers.UpdateHousingStatus).
 		Methods("PUT")
+
+	housingRouter.
+		HandleFunc("/owner/{owner_id:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}}", handlers.GetHousingByOwnerID).
+		Methods("GET")
 }

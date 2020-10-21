@@ -278,6 +278,29 @@ paths:
       summary: Update status of housing
       tags:
       - Housing
+  /housing/owner/{owner_id}:
+    get:
+      description: Search for all housings with a given owner ID
+      parameters:
+      - description: Owner ID
+        in: path
+        name: owner_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      summary: Get all housings of a owner
+      tags:
+      - Housing
   /housing/status:
     get:
       description: Search all housing statuses

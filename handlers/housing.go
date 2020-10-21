@@ -220,3 +220,27 @@ func GetHousingByID(w http.ResponseWriter, r *http.Request) {
 
 	json.NewEncoder(w).Encode(housing)
 }
+
+// GetHousingByOwnerID returns all housings of a given owner
+// @Summary Get all housings of a owner
+// @Description Search for all housings with a given owner ID
+// @Tags Housing
+// @Produce json
+// @Param owner_id path string true "Owner ID"
+// @Success 200 {string} []models.Housing
+// @Failure 400 {string} models.ErrorResponse
+// @Router /housing/owner/{owner_id} [get]
+func GetHousingByOwnerID(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+
+	housings, err := db.GetHousingByOwnerID(uuid.MustParse(mux.Vars(r)["owner_id"]))
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		var badRequest *models.BadRequest
+		json.NewEncoder(w).Encode(badRequest.GetError("An error occurred during housings list retrieval"))
+
+		return
+	}
+
+	json.NewEncoder(w).Encode(housings)
+}

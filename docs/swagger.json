@@ -78,6 +78,41 @@
                 }
             }
         },
+        "/housing/owner/{owner_id}": {
+            "get": {
+                "description": "Search for all housings with a given owner ID",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Housing"
+                ],
+                "summary": "Get all housings of a owner",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Owner ID",
+                        "name": "owner_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
         "/housing/status": {
             "get": {
                 "description": "Search all housing statuses",
