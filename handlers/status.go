@@ -11,6 +11,7 @@ import (
 // CreateHousingStatus handles housing status POST request and return a housing status if no error is returned
 // @Summary Insert a housing status
 // @Description Create a new housing status with given data
+// @Tags Housing Status
 // @Accept json
 // @Produce json
 // @Param status body models.Status true "Housing status data"
@@ -46,6 +47,7 @@ func CreateHousingStatus(w http.ResponseWriter, r *http.Request) {
 // GetAllHousingStatuses returns all the housing statuses found inside the database if no error is returned
 // @Summary Get all housing statuses
 // @Description Search all housing statuses
+// @Tags Housing Status
 // @Produce json
 // @Success 200 {string} []models.Status
 // @Failure 400 {string} models.ErrorResponse

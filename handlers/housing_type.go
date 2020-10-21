@@ -13,6 +13,7 @@ import (
 // CreateHousingType handles housing type POST request and return a housing type if no error is returned
 // @Summary Insert a housing type
 // @Description Create a new housing type with given data
+// @Tags Housing Types
 // @Accept json
 // @Produce json
 // @Param type body models.HousingType true "Housing type data"
@@ -48,6 +49,7 @@ func CreateHousingType(w http.ResponseWriter, r *http.Request) {
 // GetAllHousingTypes returns all the housing types found inside the database if no error is returned
 // @Summary Get all housing types
 // @Description Search all housing types
+// @Tags Housing Types
 // @Produce json
 // @Success 200 {string} []models.HousingType
 // @Failure 400 {string} models.ErrorResponse
@@ -69,6 +71,7 @@ func GetAllHousingTypes(w http.ResponseWriter, r *http.Request) {
 // GetAllHousingByType returns all the housing with a given type found on the request response
 // @Summary Get all housing by type
 // @Description Search all housing of a given type
+// @Tags Housing Types
 // @Produce json
 // @Param housing_type_id path string true "Housing type ID"
 // @Success 200 {string} []models.Housing
