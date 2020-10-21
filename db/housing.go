@@ -79,3 +79,14 @@ func UpdateHousingStatus(housingID, statusID uuid.UUID) error {
 
 	return err
 }
+
+// GetHousingByOwnerID find all housings with a given owner ID
+func GetHousingByOwnerID(ownerID uuid.UUID) ([]models.Housing, error) {
+	var housings []models.Housing
+
+	if err := Db.Model(&housings).Where("owner_id = ?", ownerID).Select(); err != nil {
+		return nil, err
+	}
+
+	return housings, nil
+}
