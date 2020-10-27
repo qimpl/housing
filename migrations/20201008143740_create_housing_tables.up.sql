@@ -36,6 +36,7 @@ CREATE TABLE "housings" (
   "is_furnished" bool DEFAULT FALSE NOT NULL,
   "has_electricity" bool DEFAULT FALSE NOT NULL,
   "has_gas" bool DEFAULT FALSE NOT NULL,
+  "is_published" bool DEFAULT FALSE NOT NULL,
   "owner_id" uuid NOT NULL,
   "last_tenant_id" uuid,
   "created_at" timestamp DEFAULT CURRENT_TIMESTAMP,

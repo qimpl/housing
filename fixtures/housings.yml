@@ -8,6 +8,7 @@
   zip: 59800
   street: 30 Rue Solférino
   has_electricity: true
+  is_published: true
   owner_id: RAW=gen_random_uuid()
   last_tenant_id: RAW=gen_random_uuid()
   status_id: 6c7de9e6-eddd-4139-bda7-5852beff8b49
@@ -52,6 +53,7 @@
   city: Ronchin
   zip: 59790
   street: 45 Rue du Général Leclerc
+  is_published: true
   owner_id: RAW=gen_random_uuid()
   last_tenant_id: RAW=gen_random_uuid()
   status_id: a04e7587-87a1-4d5a-81c8-286a5fceee39

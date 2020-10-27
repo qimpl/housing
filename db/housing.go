@@ -80,6 +80,15 @@ func UpdateHousingStatus(housingID, statusID uuid.UUID) error {
 	return err
 }
 
+// UpdateHousingPublicationStatus updates the publication status of a given housing
+func UpdateHousingPublicationStatus(housingID uuid.UUID, isPublished bool) error {
+	var housing models.Housing
+
+	_, err := Db.Model(&housing).Set("is_published = ?", isPublished).Where("id = ?", housingID).Update()
+
+	return err
+}
+
 // GetHousingByOwnerID find all housings with a given owner ID
 func GetHousingByOwnerID(ownerID uuid.UUID) ([]models.Housing, error) {
 	var housings []models.Housing

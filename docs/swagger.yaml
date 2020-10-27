@@ -17,6 +17,9 @@ definitions:
       is_furnished:
         example: false
         type: boolean
+      is_published:
+        example: true
+        type: boolean
       last_tenant_id:
         example: e185deb2-91d5-4ab7-87b3-daaffac00e3d
         type: string
@@ -65,6 +68,9 @@ definitions:
       is_furnished:
         example: false
         type: boolean
+      is_published:
+        example: true
+        type: boolean
       last_tenant_id:
         example: e185deb2-91d5-4ab7-87b3-daaffac00e3d
         type: string
@@ -107,6 +113,12 @@ definitions:
       name:
         example: sold
         type: string
+    type: object
+  models.UpdatePublicationStatus:
+    properties:
+      is_published:
+        example: true
+        type: boolean
     type: object
   models.UpdateStatusBody:
     properties:
@@ -242,6 +254,40 @@ paths:
           schema:
             type: string
       summary: Update a housing by ID
+      tags:
+      - Housing
+  /housing/{housing_id}/publication:
+    patch:
+      consumes:
+      - application/json
+      description: Update the publication status of a housing
+      parameters:
+      - description: Housing ID
+        in: path
+        name: housing_id
+        required: true
+        type: string
+      - description: Status ID
+        in: body
+        name: status
+        required: true
+        schema:
+          $ref: '#/definitions/models.UpdatePublicationStatus'
+      responses:
+        "204": {}
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+        "422":
+          description: Unprocessable Entity
+          schema:
+            type: string
+      summary: Update publication status
       tags:
       - Housing
   /housing/{housing_id}/status:
