@@ -244,3 +244,52 @@ func GetHousingByOwnerID(w http.ResponseWriter, r *http.Request) {
 
 	json.NewEncoder(w).Encode(housings)
 }
+
+// UpdateHousingPublicationStatus updates the publication status of a housing
+// @Summary Update publication status
+// @Description Update the publication status of a housing
+// @Tags Housing
+// @Accept json
+// @Param housing_id path string true "Housing ID"
+// @Param status body models.UpdatePublicationStatus true "Status ID"
+// @Success 204 ""
+// @Failure 400 {string} models.ErrorResponse
+// @Failure 404 {string} models.ErrorResponse
+// @Failure 422 {string} models.ErrorResponse
+// @Router /housing/{housing_id}/publication [patch]
+func UpdateHousingPublicationStatus(w http.ResponseWriter, r *http.Request) {
+	var body *models.UpdatePublicationStatus
+	housingID := uuid.MustParse(mux.Vars(r)["housing_id"])
+
+	decoder := json.NewDecoder(r.Body)
+	decoder.DisallowUnknownFields()
+
+	if err := decoder.Decode(&body); err != nil {
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusUnprocessableEntity)
+		var unprocessableEntity *models.UnprocessableEntity
+		json.NewEncoder(w).Encode(unprocessableEntity.GetError("Body malformed data"))
+
+		return
+	}
+
+	if _, err := db.GetHousingByID(housingID); err != nil {
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusNotFound)
+		var notFound *models.NotFound
+		json.NewEncoder(w).Encode(notFound.GetError("The given housing ID doesn't exist"))
+
+		return
+	}
+
+	if err := db.UpdateHousingPublicationStatus(housingID, body.IsPublished); err != nil {
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusBadRequest)
+		var badRequest *models.BadRequest
+		json.NewEncoder(w).Encode(badRequest.GetError("An error occurred during housing status update"))
+
+		return
+	}
+
+	w.WriteHeader(http.StatusNoContent)
+}

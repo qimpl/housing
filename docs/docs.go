@@ -428,6 +428,57 @@ var doc = `{
                 }
             }
         },
+        "/housing/{housing_id}/publication": {
+            "patch": {
+                "description": "Update the publication status of a housing",
+                "consumes": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Housing"
+                ],
+                "summary": "Update publication status",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Housing ID",
+                        "name": "housing_id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Status ID",
+                        "name": "status",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.UpdatePublicationStatus"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {},
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
         "/housing/{housing_id}/status": {
             "put": {
                 "description": "Update the status of a given housing",
@@ -504,6 +555,10 @@ var doc = `{
                     "type": "boolean",
                     "example": false
                 },
+                "is_published": {
+                    "type": "boolean",
+                    "example": true
+                },
                 "last_tenant_id": {
                     "type": "string",
                     "example": "e185deb2-91d5-4ab7-87b3-daaffac00e3d"
@@ -569,6 +624,10 @@ var doc = `{
                     "type": "boolean",
                     "example": false
                 },
+                "is_published": {
+                    "type": "boolean",
+                    "example": true
+                },
                 "last_tenant_id": {
                     "type": "string",
                     "example": "e185deb2-91d5-4ab7-87b3-daaffac00e3d"
@@ -626,6 +685,15 @@ var doc = `{
                 "name": {
                     "type": "string",
                     "example": "sold"
+                }
+            }
+        },
+        "models.UpdatePublicationStatus": {
+            "type": "object",
+            "properties": {
+                "is_published": {
+                    "type": "boolean",
+                    "example": true
                 }
             }
         },

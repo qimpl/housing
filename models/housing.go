@@ -21,6 +21,7 @@ type Housing struct {
 	IsFurnished    bool      `json:"is_furnished" pg:",use_zero" example:"false"`
 	HasElectricity bool      `json:"has_electricity" pg:",use_zero" example:"true"`
 	HasGas         bool      `json:"has_gas" pg:",use_zero" example:"false"`
+	IsPublished    bool      `json:"is_published" pg:",use_zero" example:"true"`
 	StatusID       uuid.UUID `json:"status_id" pg:"status_id" example:"e185deb2-91d5-4ab7-87b3-daaffac00e3d"`
 	OwnerID        uuid.UUID `json:"owner_id" pg:"owner_id" example:"e185deb2-91d5-4ab7-87b3-daaffac00e3d"`
 	LastTenantID   uuid.UUID `json:"last_tenant_id" pg:"last_tenant_id" example:"e185deb2-91d5-4ab7-87b3-daaffac00e3d"`
@@ -42,7 +43,13 @@ type HousingBody struct {
 	IsFurnished    bool      `json:"is_furnished,omitempty" pg:",use_zero" example:"false"`
 	HasElectricity bool      `json:"has_electricity,omitempty" pg:",use_zero" example:"true"`
 	HasGas         bool      `json:"has_gas,omitempty" pg:",use_zero" example:"false"`
+	IsPublished    bool      `json:"is_published,omitempty" pg:",use_zero" example:"true"`
 	StatusID       uuid.UUID `json:"status_id,omitempty" pg:"status_id" example:"e185deb2-91d5-4ab7-87b3-daaffac00e3d"`
 	OwnerID        uuid.UUID `json:"owner_id,omitempty" pg:"owner_id" example:"e185deb2-91d5-4ab7-87b3-daaffac00e3d"`
 	LastTenantID   uuid.UUID `json:"last_tenant_id,omitempty" pg:"last_tenant_id" example:"e185deb2-91d5-4ab7-87b3-daaffac00e3d"`
+}
+
+// UpdatePublicationStatus is used inside publication status PATCH request body
+type UpdatePublicationStatus struct {
+	IsPublished bool `json:"is_published" example:"true"`
 }
