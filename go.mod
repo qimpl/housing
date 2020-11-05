@@ -15,7 +15,8 @@ require (
 	github.com/swaggo/http-swagger v0.0.0-20200308142732-58ac5e232fba
 	github.com/swaggo/swag v1.6.7
 	golang.org/x/crypto v0.0.0-20201016220609-9e8e0b390897 // indirect
-	golang.org/x/net v0.0.0-20201026091529-146b70c837a4 // indirect
-	golang.org/x/sys v0.0.0-20201027090413-e1471140ff15 // indirect
-	golang.org/x/tools v0.0.0-20201026223136-e84cfc6dd5ca // indirect
+	golang.org/x/net v0.0.0-20201031054903-ff519b6c9102 // indirect
+	golang.org/x/sys v0.0.0-20201101102859-da207088b7d1 // indirect
+	golang.org/x/text v0.3.4 // indirect
+	golang.org/x/tools v0.0.0-20201105173854-bc9fc8d8c4bc // indirect
 )

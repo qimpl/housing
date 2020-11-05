@@ -1,0 +1,19 @@
+- date: RAW=NOW() + interval '2 days'
+  hour: 16:00
+  is_accepted: true
+  housing_id: f6ac45e9-7c93-4136-bca0-57eea520a041
+
+- date: RAW=NOW() + interval '4 days'
+  hour: 13:00
+  is_accepted: false
+  housing_id: f6ac45e9-7c93-4136-bca0-57eea520a041
+
+- date: RAW=NOW() + interval '6 days'
+  hour: 18:00
+  is_accepted: false
+  housing_id: 5178dacb-9cee-47d8-9673-2422b9b21cae
+
+- date: RAW=NOW()
+  hour: 20:00
+  is_accepted: true
+  housing_id: 5178dacb-9cee-47d8-9673-2422b9b21cae

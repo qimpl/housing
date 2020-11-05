@@ -1,4 +1,5 @@
-- type_id: 58fc4ce6-3509-4185-845f-3d9ccda6469a
+- id: f6ac45e9-7c93-4136-bca0-57eea520a041
+  type_id: 58fc4ce6-3509-4185-845f-3d9ccda6469a
   surface_area: 94.8
   rent_price: 1240
   rental_charges: 150
@@ -13,7 +14,8 @@
   last_tenant_id: RAW=gen_random_uuid()
   status_id: 6c7de9e6-eddd-4139-bda7-5852beff8b49
 
-- type_id: 58fc4ce6-3509-4185-845f-3d9ccda6469a
+- id: 5178dacb-9cee-47d8-9673-2422b9b21cae
+  type_id: 58fc4ce6-3509-4185-845f-3d9ccda6469a
   surface_area: 45
   rent_price: 500
   rental_charges: 80

@@ -21,6 +21,7 @@ func CreateRouter() {
 	createHousingRouter(APIRouter)
 	createHousingTypeRouter(APIRouter)
 	createHousingStatusRouter(APIRouter)
+	createVisitRouter(APIRouter)
 
 	port := os.Getenv("PORT")
 	if port == "" {
