@@ -529,6 +529,93 @@ var doc = `{
                     }
                 }
             }
+        },
+        "/visit": {
+            "post": {
+                "description": "Create a new housing visit with given data",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Visits"
+                ],
+                "summary": "Insert a visit",
+                "parameters": [
+                    {
+                        "description": "Visit data",
+                        "name": "visit",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Visit"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/visit/housing/{housing_id}": {
+            "get": {
+                "description": "Get all visits of a housing with its ID",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Visits"
+                ],
+                "summary": "Get all visits of a housing",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Housing ID",
+                        "name": "housing_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -703,6 +790,27 @@ var doc = `{
                 "status_id": {
                     "type": "string",
                     "example": "e185deb2-91d5-4ab7-87b3-daaffac00e3d"
+                }
+            }
+        },
+        "models.Visit": {
+            "type": "object",
+            "properties": {
+                "date": {
+                    "type": "string",
+                    "example": "2020-11-05"
+                },
+                "hour": {
+                    "type": "string",
+                    "example": "18:00"
+                },
+                "housing_id": {
+                    "type": "string",
+                    "example": "cb7bc97f-45b0-4972-8edf-dc7300cc059c"
+                },
+                "is_accepted": {
+                    "type": "boolean",
+                    "example": false
                 }
             }
         }
