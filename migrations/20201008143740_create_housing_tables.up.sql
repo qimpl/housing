@@ -1,6 +1,6 @@
-CREATE EXTENSION pgcrypto;
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
 
-CREATE FUNCTION trigger_update_timestamp ()
+CREATE OR REPLACE FUNCTION trigger_update_timestamp ()
   RETURNS TRIGGER
   AS $$
 BEGIN
@@ -47,3 +47,4 @@ CREATE TRIGGER update_timestamp
   BEFORE UPDATE ON "housings"
   FOR EACH ROW
   EXECUTE PROCEDURE trigger_update_timestamp ();
+
