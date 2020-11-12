@@ -616,6 +616,42 @@ var doc = `{
                     }
                 }
             }
+        },
+        "/visit/{visit_id}/accept": {
+            "patch": {
+                "description": "Update a given visit booking IsAccepted field to true",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Visits"
+                ],
+                "summary": "Accept a non accepted visit booking",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Visit booking ID",
+                        "name": "visit_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {},
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {

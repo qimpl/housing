@@ -25,3 +25,25 @@ func GetVisitByHousingID(housingID uuid.UUID) ([]models.Visit, error) {
 
 	return visit, nil
 }
+
+// GetVisitBookingByID get a given visit booking
+func GetVisitBookingByID(visitID uuid.UUID) (*models.Visit, error) {
+	visit := new(models.Visit)
+
+	if err := Db.Model(visit).Where("id = ?", visitID).Select(); err != nil {
+		return nil, err
+	}
+
+	return visit, nil
+}
+
+// AcceptVisit change IsAccepted field of a given visit booking to true
+func AcceptVisit(visitID uuid.UUID) error {
+	var visit *models.Visit
+
+	if _, err := Db.Model(visit).Set("is_accepted = ?", true).Where("id = ?", visitID).Update(); err != nil {
+		return err
+	}
+
+	return nil
+}

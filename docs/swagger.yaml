@@ -511,6 +511,30 @@ paths:
       summary: Insert a visit
       tags:
       - Visits
+  /visit/{visit_id}/accept:
+    patch:
+      description: Update a given visit booking IsAccepted field to true
+      parameters:
+      - description: Visit booking ID
+        in: path
+        name: visit_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "204": {}
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+      summary: Accept a non accepted visit booking
+      tags:
+      - Visits
   /visit/housing/{housing_id}:
     get:
       description: Get all visits of a housing with its ID

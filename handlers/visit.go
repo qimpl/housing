@@ -80,3 +80,37 @@ func GetVisitByHousingID(w http.ResponseWriter, r *http.Request) {
 
 	json.NewEncoder(w).Encode(housingVisits)
 }
+
+// AcceptVisit update a given visit booking IsAccepted field to true
+// @Summary Accept a non accepted visit booking
+// @Description Update a given visit booking IsAccepted field to true
+// @Tags Visits
+// @Produce json
+// @Param visit_id path string true "Visit booking ID"
+// @Success 204 ""
+// @Failure 400 {string} models.ErrorResponse
+// @Failure 404 {string} models.ErrorResponse
+// @Router /visit/{visit_id}/accept [patch]
+func AcceptVisit(w http.ResponseWriter, r *http.Request) {
+	visitID := uuid.MustParse(mux.Vars(r)["visit_id"])
+
+	if _, err := db.GetVisitBookingByID(visitID); err != nil {
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusNotFound)
+		var notFound *models.NotFound
+		json.NewEncoder(w).Encode(notFound.GetError("The given visit booking ID doesn't exist"))
+
+		return
+	}
+
+	if err := db.AcceptVisit(visitID); err != nil {
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusBadRequest)
+		var badRequest *models.BadRequest
+		json.NewEncoder(w).Encode(badRequest.GetError("An error occurred during visit booking acceptation retrieval"))
+
+		return
+	}
+
+	w.WriteHeader(http.StatusNoContent)
+}
