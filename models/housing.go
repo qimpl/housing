@@ -13,6 +13,7 @@ type Housing struct {
 	SurfaceArea    float32   `json:"surface_area" example:"15.5"`
 	RentPrice      float32   `json:"rent_price" example:"60.95"`
 	RentalCharges  float32   `json:"rental_charges" example:"60.9"`
+	Description    string    `json:"description" example:"Appartement située aux abords d'un parc arboré"`
 	Country        string    `json:"country" example:"FR"`
 	State          string    `json:"state" example:"Haut-de-France"`
 	City           string    `json:"city" example:"Lille"`
@@ -35,6 +36,7 @@ type HousingBody struct {
 	SurfaceArea    float32   `json:"surface_area,omitempty" example:"15.5"`
 	RentPrice      float32   `json:"rent_price,omitempty" example:"60.95"`
 	RentalCharges  float32   `json:"rental_charges,omitempty" example:"60.9"`
+	Description    string    `json:"description" example:"Appartement située aux abords d'un parc arboré"`
 	Country        string    `json:"country,omitempty" example:"FR"`
 	State          string    `json:"state,omitempty" example:"Haut-de-France"`
 	City           string    `json:"city,omitempty" example:"Lille"`

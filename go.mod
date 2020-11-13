@@ -7,6 +7,7 @@ require (
 	github.com/go-openapi/spec v0.19.9 // indirect
 	github.com/go-openapi/swag v0.19.9 // indirect
 	github.com/go-pg/pg/v10 v10.4.0
+	github.com/google/go-cmp v0.5.3 // indirect
 	github.com/google/uuid v1.1.2
 	github.com/gorilla/mux v1.8.0
 	github.com/joho/godotenv v1.3.0
@@ -16,7 +17,7 @@ require (
 	github.com/swaggo/swag v1.6.7
 	golang.org/x/crypto v0.0.0-20201112155050-0c6587e931a9 // indirect
 	golang.org/x/net v0.0.0-20201110031124-69a78807bb2b // indirect
-	golang.org/x/sys v0.0.0-20201112073958-5cba982894dd // indirect
+	golang.org/x/sys v0.0.0-20201113135734-0a15ea8d9b02 // indirect
 	golang.org/x/text v0.3.4 // indirect
-	golang.org/x/tools v0.0.0-20201111224557-41a3a589386c // indirect
+	golang.org/x/tools v0.0.0-20201112185108-eeaa07dd7696 // indirect
 )

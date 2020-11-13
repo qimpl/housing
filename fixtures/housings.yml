@@ -3,6 +3,7 @@
   surface_area: 94.8
   rent_price: 1240
   rental_charges: 150
+  description: Bel appartement sur le boulevard Vauban, lumineux avec bel espace de vie. Chauffage au gaz. Peu de vis-à-vis.
   country: FR
   state: Nord
   city: Lille
@@ -19,6 +20,7 @@
   surface_area: 45
   rent_price: 500
   rental_charges: 80
+  description: Situé à 2 minutes de Divonne les Bains, 3 minutes de l'autoroute (Genève-Lausanne), et 15 minutes de Nyon et de l'aéroport de Genève.Location de T2 Duplex entièrement équipe "prêt à vivre" en résidence hôtelier. Possibilité de louer pour de courtes et longs séjours (de 1 mois à 1 an et +) Tout inclus Eau. Electricité. Chauffage. Internet,
   country: FR
   state: Nord
   city: Douai
@@ -35,6 +37,7 @@
   surface_area: 86.4
   rent_price: 956.50
   rental_charges: 95
+  description: Dans une petite résidence calme située dans un parc arboré, à proximité du centre-ville, cet appartement de type 2, d'une surface habitable de 48 m² comprend une cuisine, un salon-séjour, une chambre et une salle d'eau avec WC.
   country: FR
   state: Pas-de-Calais
   city: Arras

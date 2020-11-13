@@ -28,6 +28,7 @@ CREATE TABLE "housings" (
   "surface_area" float NOT NULL,
   "rent_price" float NOT NULL,
   "rental_charges" float NOT NULL,
+  "description" text,
   "country" varchar(2) NOT NULL,
   "state" varchar(50) NOT NULL,
   "city" varchar(100) NOT NULL,
