@@ -40,6 +40,8 @@ CREATE TABLE "housings" (
   "is_published" bool DEFAULT FALSE NOT NULL,
   "owner_id" uuid NOT NULL,
   "last_tenant_id" uuid,
+  "stripe_customer_id" : varchar(20),
+  "stripe_payment_method_id" : varchar(30),
   "created_at" timestamp DEFAULT CURRENT_TIMESTAMP,
   "updated_at" timestamp DEFAULT CURRENT_TIMESTAMP
 );
@@ -48,4 +50,3 @@ CREATE TRIGGER update_timestamp
   BEFORE UPDATE ON "housings"
   FOR EACH ROW
   EXECUTE PROCEDURE trigger_update_timestamp ();
-
