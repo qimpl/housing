@@ -25,7 +25,9 @@ func CreateRouter() {
 
 	APIRouter.PathPrefix("/swagger/").Handler(httpSwagger.WrapHandler)
 
-	router.Use(jwtVerifyTokenMiddleware)
+	if os.Getenv("ENV") != "dev" {
+		router.Use(jwtVerifyTokenMiddleware)
+	}
 
 	createHousingRouter(APIRouter)
 	createHousingTypeRouter(APIRouter)

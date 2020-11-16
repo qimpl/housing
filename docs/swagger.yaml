@@ -1,5 +1,14 @@
 basePath: /api/v1
 definitions:
+  models.ErrorResponse:
+    properties:
+      error_code:
+        type: string
+      message:
+        type: string
+      status_code:
+        type: integer
+    type: object
   models.Housing:
     properties:
       city:
@@ -7,6 +16,9 @@ definitions:
         type: string
       country:
         example: FR
+        type: string
+      description:
+        example: Appartement située aux abords d'un parc arboré
         type: string
       has_electricity:
         example: true
@@ -64,6 +76,9 @@ definitions:
         type: string
       country:
         example: FR
+        type: string
+      description:
+        example: Appartement située aux abords d'un parc arboré
         type: string
       has_electricity:
         example: true
@@ -168,11 +183,13 @@ paths:
         "200":
           description: OK
           schema:
-            type: string
+            items:
+              $ref: '#/definitions/models.Housing'
+            type: array
         "400":
           description: Bad Request
           schema:
-            type: string
+            $ref: '#/definitions/models.ErrorResponse'
       summary: Get all housing
       tags:
       - Housing
@@ -193,15 +210,15 @@ paths:
         "200":
           description: OK
           schema:
-            type: string
+            $ref: '#/definitions/models.Housing'
         "400":
           description: Bad Request
           schema:
-            type: string
+            $ref: '#/definitions/models.ErrorResponse'
         "422":
           description: Unprocessable Entity
           schema:
-            type: string
+            $ref: '#/definitions/models.ErrorResponse'
       summary: Insert a housing
       tags:
       - Housing
@@ -219,7 +236,7 @@ paths:
         "400":
           description: Bad Request
           schema:
-            type: string
+            $ref: '#/definitions/models.ErrorResponse'
       summary: Delete a housing by ID
       tags:
       - Housing
@@ -237,11 +254,11 @@ paths:
         "200":
           description: OK
           schema:
-            type: string
+            $ref: '#/definitions/models.Housing'
         "400":
           description: Bad Request
           schema:
-            type: string
+            $ref: '#/definitions/models.ErrorResponse'
       summary: Get a housing by ID
       tags:
       - Housing
@@ -267,19 +284,19 @@ paths:
         "200":
           description: OK
           schema:
-            type: string
+            $ref: '#/definitions/models.Housing'
         "400":
           description: Bad Request
           schema:
-            type: string
+            $ref: '#/definitions/models.ErrorResponse'
         "404":
           description: Not Found
           schema:
-            type: string
+            $ref: '#/definitions/models.ErrorResponse'
         "422":
           description: Unprocessable Entity
           schema:
-            type: string
+            $ref: '#/definitions/models.ErrorResponse'
       summary: Update a housing by ID
       tags:
       - Housing
@@ -305,15 +322,15 @@ paths:
         "400":
           description: Bad Request
           schema:
-            type: string
+            $ref: '#/definitions/models.ErrorResponse'
         "404":
           description: Not Found
           schema:
-            type: string
+            $ref: '#/definitions/models.ErrorResponse'
         "422":
           description: Unprocessable Entity
           schema:
-            type: string
+            $ref: '#/definitions/models.ErrorResponse'
       summary: Update publication status
       tags:
       - Housing
@@ -339,15 +356,15 @@ paths:
         "400":
           description: Bad Request
           schema:
-            type: string
+            $ref: '#/definitions/models.ErrorResponse'
         "404":
           description: Not Found
           schema:
-            type: string
+            $ref: '#/definitions/models.ErrorResponse'
         "422":
           description: Unprocessable Entity
           schema:
-            type: string
+            $ref: '#/definitions/models.ErrorResponse'
       summary: Update status of housing
       tags:
       - Housing
@@ -366,11 +383,13 @@ paths:
         "200":
           description: OK
           schema:
-            type: string
+            items:
+              $ref: '#/definitions/models.Housing'
+            type: array
         "400":
           description: Bad Request
           schema:
-            type: string
+            $ref: '#/definitions/models.ErrorResponse'
       summary: Get all housings of a owner
       tags:
       - Housing
@@ -383,11 +402,13 @@ paths:
         "200":
           description: OK
           schema:
-            type: string
+            items:
+              $ref: '#/definitions/models.Status'
+            type: array
         "400":
           description: Bad Request
           schema:
-            type: string
+            $ref: '#/definitions/models.ErrorResponse'
       summary: Get all housing statuses
       tags:
       - Housing Status
@@ -408,15 +429,15 @@ paths:
         "200":
           description: OK
           schema:
-            type: string
+            $ref: '#/definitions/models.Status'
         "400":
           description: Bad Request
           schema:
-            type: string
+            $ref: '#/definitions/models.ErrorResponse'
         "422":
           description: Unprocessable Entity
           schema:
-            type: string
+            $ref: '#/definitions/models.ErrorResponse'
       summary: Insert a housing status
       tags:
       - Housing Status
@@ -429,11 +450,13 @@ paths:
         "200":
           description: OK
           schema:
-            type: string
+            items:
+              $ref: '#/definitions/models.HousingType'
+            type: array
         "400":
           description: Bad Request
           schema:
-            type: string
+            $ref: '#/definitions/models.ErrorResponse'
       summary: Get all housing types
       tags:
       - Housing Types
@@ -454,15 +477,15 @@ paths:
         "200":
           description: OK
           schema:
-            type: string
+            $ref: '#/definitions/models.HousingType'
         "400":
           description: Bad Request
           schema:
-            type: string
+            $ref: '#/definitions/models.ErrorResponse'
         "422":
           description: Unprocessable Entity
           schema:
-            type: string
+            $ref: '#/definitions/models.ErrorResponse'
       summary: Insert a housing type
       tags:
       - Housing Types
@@ -481,15 +504,17 @@ paths:
         "200":
           description: OK
           schema:
-            type: string
+            items:
+              $ref: '#/definitions/models.Housing'
+            type: array
         "400":
           description: Bad Request
           schema:
-            type: string
+            $ref: '#/definitions/models.ErrorResponse'
         "404":
           description: Not Found
           schema:
-            type: string
+            $ref: '#/definitions/models.ErrorResponse'
       summary: Get all housing by type
       tags:
       - Housing Types
@@ -511,15 +536,15 @@ paths:
         "201":
           description: Created
           schema:
-            type: string
+            $ref: '#/definitions/models.Visit'
         "400":
           description: Bad Request
           schema:
-            type: string
+            $ref: '#/definitions/models.ErrorResponse'
         "422":
           description: Unprocessable Entity
           schema:
-            type: string
+            $ref: '#/definitions/models.ErrorResponse'
       summary: Insert a visit
       tags:
       - Visits
@@ -539,11 +564,11 @@ paths:
         "400":
           description: Bad Request
           schema:
-            type: string
+            $ref: '#/definitions/models.ErrorResponse'
         "404":
           description: Not Found
           schema:
-            type: string
+            $ref: '#/definitions/models.ErrorResponse'
       summary: Accept a non accepted visit booking
       tags:
       - Visits
@@ -562,15 +587,17 @@ paths:
         "200":
           description: OK
           schema:
-            type: string
+            items:
+              $ref: '#/definitions/models.Visit'
+            type: array
         "400":
           description: Bad Request
           schema:
-            type: string
+            $ref: '#/definitions/models.ErrorResponse'
         "404":
           description: Not Found
           schema:
-            type: string
+            $ref: '#/definitions/models.ErrorResponse'
       summary: Get all visits of a housing
       tags:
       - Visits

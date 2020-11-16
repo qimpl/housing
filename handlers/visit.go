@@ -18,9 +18,9 @@ import (
 // @Accept json
 // @Produce json
 // @Param visit body models.Visit true "Visit data"
-// @Success 201 {string} models.Visit
-// @Failure 400 {string} models.ErrorResponse
-// @Failure 422 {string} models.ErrorResponse
+// @Success 201 {object} models.Visit
+// @Failure 400 {object} models.ErrorResponse
+// @Failure 422 {object} models.ErrorResponse
 // @Router /visit [post]
 func CreateVisit(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
@@ -53,9 +53,9 @@ func CreateVisit(w http.ResponseWriter, r *http.Request) {
 // @Tags Visits
 // @Produce json
 // @Param housing_id path string true "Housing ID"
-// @Success 200 {string} []models.Visit
-// @Failure 400 {string} models.ErrorResponse
-// @Failure 404 {string} models.ErrorResponse
+// @Success 200 {object} []models.Visit
+// @Failure 400 {object} models.ErrorResponse
+// @Failure 404 {object} models.ErrorResponse
 // @Router /visit/housing/{housing_id} [get]
 func GetVisitByHousingID(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
@@ -88,8 +88,8 @@ func GetVisitByHousingID(w http.ResponseWriter, r *http.Request) {
 // @Produce json
 // @Param visit_id path string true "Visit booking ID"
 // @Success 204 ""
-// @Failure 400 {string} models.ErrorResponse
-// @Failure 404 {string} models.ErrorResponse
+// @Failure 400 {object} models.ErrorResponse
+// @Failure 404 {object} models.ErrorResponse
 // @Router /visit/{visit_id}/accept [patch]
 func AcceptVisit(w http.ResponseWriter, r *http.Request) {
 	visitID := uuid.MustParse(mux.Vars(r)["visit_id"])
