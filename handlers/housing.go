@@ -18,9 +18,9 @@ import (
 // @Accept json
 // @Produce json
 // @Param housing body models.Housing true "Housing data"
-// @Success 200 {string} models.Housing
-// @Failure 400 {string} models.ErrorResponse
-// @Failure 422 {string} models.ErrorResponse
+// @Success 200 {object} models.Housing
+// @Failure 400 {object} models.ErrorResponse
+// @Failure 422 {object} models.ErrorResponse
 // @Router /housing [post]
 func CreateHousing(w http.ResponseWriter, r *http.Request) {
 	var housing *models.Housing
@@ -52,8 +52,8 @@ func CreateHousing(w http.ResponseWriter, r *http.Request) {
 // @Description Search all housing
 // @Tags Housing
 // @Produce json
-// @Success 200 {string} []models.Housing
-// @Failure 400 {string} models.ErrorResponse
+// @Success 200 {object} []models.Housing
+// @Failure 400 {object} models.ErrorResponse
 // @Router /housing [get]
 func GetAllHousing(w http.ResponseWriter, r *http.Request) {
 	housing, err := db.GetAllHousing()
@@ -75,7 +75,7 @@ func GetAllHousing(w http.ResponseWriter, r *http.Request) {
 // @Tags Housing
 // @Param housing_id path string true "Housing ID"
 // @Success 204 ""
-// @Failure 400 {string} models.ErrorResponse
+// @Failure 400 {object} models.ErrorResponse
 // @Router /housing/{housing_id} [delete]
 func DeleteHousingByID(w http.ResponseWriter, r *http.Request) {
 	if err := db.DeleteHousingByID(uuid.MustParse(mux.Vars(r)["housing_id"])); err != nil {
@@ -97,10 +97,10 @@ func DeleteHousingByID(w http.ResponseWriter, r *http.Request) {
 // @Produce json
 // @Param housing_id path string true "Housing ID"
 // @Param housing body models.HousingBody true "Housing data"
-// @Success 200 {string} models.Housing
-// @Failure 400 {string} models.ErrorResponse
-// @Failure 404 {string} models.ErrorResponse
-// @Failure 422 {string} models.ErrorResponse
+// @Success 200 {object} models.Housing
+// @Failure 400 {object} models.ErrorResponse
+// @Failure 404 {object} models.ErrorResponse
+// @Failure 422 {object} models.ErrorResponse
 // @Router /housing/{housing_id} [put]
 func UpdateHousingByID(w http.ResponseWriter, r *http.Request) {
 	var updatedHousing *models.HousingBody
@@ -147,9 +147,9 @@ func UpdateHousingByID(w http.ResponseWriter, r *http.Request) {
 // @Param housing_id path string true "Housing ID"
 // @Param status body models.UpdateStatusBody true "Status ID"
 // @Success 204 ""
-// @Failure 400 {string} models.ErrorResponse
-// @Failure 404 {string} models.ErrorResponse
-// @Failure 422 {string} models.ErrorResponse
+// @Failure 400 {object} models.ErrorResponse
+// @Failure 404 {object} models.ErrorResponse
+// @Failure 422 {object} models.ErrorResponse
 // @Router /housing/{housing_id}/status [put]
 func UpdateHousingStatus(w http.ResponseWriter, r *http.Request) {
 	var body *models.UpdateStatusBody
@@ -203,8 +203,8 @@ func UpdateHousingStatus(w http.ResponseWriter, r *http.Request) {
 // @Tags Housing
 // @Produce json
 // @Param housing_id path string true "Housing ID"
-// @Success 200 {string} models.Housing
-// @Failure 400 {string} models.ErrorResponse
+// @Success 200 {object} models.Housing
+// @Failure 400 {object} models.ErrorResponse
 // @Router /housing/{housing_id} [get]
 func GetHousingByID(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
@@ -227,8 +227,8 @@ func GetHousingByID(w http.ResponseWriter, r *http.Request) {
 // @Tags Housing
 // @Produce json
 // @Param owner_id path string true "Owner ID"
-// @Success 200 {string} []models.Housing
-// @Failure 400 {string} models.ErrorResponse
+// @Success 200 {object} []models.Housing
+// @Failure 400 {object} models.ErrorResponse
 // @Router /housing/owner/{owner_id} [get]
 func GetHousingByOwnerID(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
@@ -253,9 +253,9 @@ func GetHousingByOwnerID(w http.ResponseWriter, r *http.Request) {
 // @Param housing_id path string true "Housing ID"
 // @Param status body models.UpdatePublicationStatus true "Status ID"
 // @Success 204 ""
-// @Failure 400 {string} models.ErrorResponse
-// @Failure 404 {string} models.ErrorResponse
-// @Failure 422 {string} models.ErrorResponse
+// @Failure 400 {object} models.ErrorResponse
+// @Failure 404 {object} models.ErrorResponse
+// @Failure 422 {object} models.ErrorResponse
 // @Router /housing/{housing_id}/publication [patch]
 func UpdateHousingPublicationStatus(w http.ResponseWriter, r *http.Request) {
 	var body *models.UpdatePublicationStatus

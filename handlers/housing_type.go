@@ -17,9 +17,9 @@ import (
 // @Accept json
 // @Produce json
 // @Param type body models.HousingType true "Housing type data"
-// @Success 200 {string} models.HousingType
-// @Failure 400 {string} models.ErrorResponse
-// @Failure 422 {string} models.ErrorResponse
+// @Success 200 {object} models.HousingType
+// @Failure 400 {object} models.ErrorResponse
+// @Failure 422 {object} models.ErrorResponse
 // @Router /housing/type [post]
 func CreateHousingType(w http.ResponseWriter, r *http.Request) {
 	var housingType *models.HousingType
@@ -51,8 +51,8 @@ func CreateHousingType(w http.ResponseWriter, r *http.Request) {
 // @Description Search all housing types
 // @Tags Housing Types
 // @Produce json
-// @Success 200 {string} []models.HousingType
-// @Failure 400 {string} models.ErrorResponse
+// @Success 200 {object} []models.HousingType
+// @Failure 400 {object} models.ErrorResponse
 // @Router /housing/type [get]
 func GetAllHousingTypes(w http.ResponseWriter, r *http.Request) {
 	housingTypes, err := db.GetAllHousingTypes()
@@ -74,9 +74,9 @@ func GetAllHousingTypes(w http.ResponseWriter, r *http.Request) {
 // @Tags Housing Types
 // @Produce json
 // @Param housing_type_id path string true "Housing type ID"
-// @Success 200 {string} []models.Housing
-// @Failure 400 {string} models.ErrorResponse
-// @Failure 404 {string} models.ErrorResponse
+// @Success 200 {object} []models.Housing
+// @Failure 400 {object} models.ErrorResponse
+// @Failure 404 {object} models.ErrorResponse
 // @Router /housing/type/{housing_type_id} [get]
 func GetAllHousingByType(w http.ResponseWriter, r *http.Request) {
 	validUUID := uuid.MustParse(mux.Vars(r)["housing_type_id"])

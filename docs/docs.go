@@ -39,13 +39,16 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "string"
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Housing"
+                            }
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/models.ErrorResponse"
                         }
                     }
                 }
@@ -77,19 +80,19 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/models.Housing"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/models.ErrorResponse"
                         }
                     },
                     "422": {
                         "description": "Unprocessable Entity",
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/models.ErrorResponse"
                         }
                     }
                 }
@@ -118,13 +121,16 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "string"
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Housing"
+                            }
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/models.ErrorResponse"
                         }
                     }
                 }
@@ -144,13 +150,16 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "string"
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Status"
+                            }
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/models.ErrorResponse"
                         }
                     }
                 }
@@ -182,19 +191,19 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/models.Status"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/models.ErrorResponse"
                         }
                     },
                     "422": {
                         "description": "Unprocessable Entity",
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/models.ErrorResponse"
                         }
                     }
                 }
@@ -214,13 +223,16 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "string"
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.HousingType"
+                            }
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/models.ErrorResponse"
                         }
                     }
                 }
@@ -252,19 +264,19 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/models.HousingType"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/models.ErrorResponse"
                         }
                     },
                     "422": {
                         "description": "Unprocessable Entity",
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/models.ErrorResponse"
                         }
                     }
                 }
@@ -293,19 +305,22 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "string"
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Housing"
+                            }
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/models.ErrorResponse"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/models.ErrorResponse"
                         }
                     }
                 }
@@ -334,13 +349,13 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/models.Housing"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/models.ErrorResponse"
                         }
                     }
                 }
@@ -379,25 +394,25 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/models.Housing"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/models.ErrorResponse"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/models.ErrorResponse"
                         }
                     },
                     "422": {
                         "description": "Unprocessable Entity",
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/models.ErrorResponse"
                         }
                     }
                 }
@@ -422,7 +437,7 @@ var doc = `{
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/models.ErrorResponse"
                         }
                     }
                 }
@@ -461,19 +476,19 @@ var doc = `{
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/models.ErrorResponse"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/models.ErrorResponse"
                         }
                     },
                     "422": {
                         "description": "Unprocessable Entity",
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/models.ErrorResponse"
                         }
                     }
                 }
@@ -512,19 +527,19 @@ var doc = `{
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/models.ErrorResponse"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/models.ErrorResponse"
                         }
                     },
                     "422": {
                         "description": "Unprocessable Entity",
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/models.ErrorResponse"
                         }
                     }
                 }
@@ -558,19 +573,19 @@ var doc = `{
                     "201": {
                         "description": "Created",
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/models.Visit"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/models.ErrorResponse"
                         }
                     },
                     "422": {
                         "description": "Unprocessable Entity",
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/models.ErrorResponse"
                         }
                     }
                 }
@@ -599,19 +614,22 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "string"
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Visit"
+                            }
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/models.ErrorResponse"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/models.ErrorResponse"
                         }
                     }
                 }
@@ -641,13 +659,13 @@ var doc = `{
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/models.ErrorResponse"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/definitions/models.ErrorResponse"
                         }
                     }
                 }
@@ -655,6 +673,20 @@ var doc = `{
         }
     },
     "definitions": {
+        "models.ErrorResponse": {
+            "type": "object",
+            "properties": {
+                "error_code": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "status_code": {
+                    "type": "integer"
+                }
+            }
+        },
         "models.Housing": {
             "type": "object",
             "properties": {
@@ -665,6 +697,10 @@ var doc = `{
                 "country": {
                     "type": "string",
                     "example": "FR"
+                },
+                "description": {
+                    "type": "string",
+                    "example": "Appartement située aux abords d'un parc arboré"
                 },
                 "has_electricity": {
                     "type": "boolean",
@@ -734,6 +770,10 @@ var doc = `{
                 "country": {
                     "type": "string",
                     "example": "FR"
+                },
+                "description": {
+                    "type": "string",
+                    "example": "Appartement située aux abords d'un parc arboré"
                 },
                 "has_electricity": {
                     "type": "boolean",

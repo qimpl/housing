@@ -15,9 +15,9 @@ import (
 // @Accept json
 // @Produce json
 // @Param status body models.Status true "Housing status data"
-// @Success 200 {string} models.Status
-// @Failure 400 {string} models.ErrorResponse
-// @Failure 422 {string} models.ErrorResponse
+// @Success 200 {object} models.Status
+// @Failure 400 {object} models.ErrorResponse
+// @Failure 422 {object} models.ErrorResponse
 // @Router /housing/status [post]
 func CreateHousingStatus(w http.ResponseWriter, r *http.Request) {
 	var housingStatus *models.Status
@@ -49,8 +49,8 @@ func CreateHousingStatus(w http.ResponseWriter, r *http.Request) {
 // @Description Search all housing statuses
 // @Tags Housing Status
 // @Produce json
-// @Success 200 {string} []models.Status
-// @Failure 400 {string} models.ErrorResponse
+// @Success 200 {object} []models.Status
+// @Failure 400 {object} models.ErrorResponse
 // @Router /housing/status [get]
 func GetAllHousingStatuses(w http.ResponseWriter, r *http.Request) {
 	housingStatuses, err := db.GetAllHousingStatuses()
