@@ -746,13 +746,9 @@ var doc = `{
                     "type": "string",
                     "example": "78 Rue Solférino"
                 },
-                "stripe_customer_id": {
+                "stripe_product_id": {
                     "type": "string",
-                    "example": "cus_IOwdRp9gIlOjTD"
-                },
-                "stripe_payment_method_id": {
-                    "type": "string",
-                    "example": "pm_1Ho8k8CMhQMU3AqAKJwPYAXj"
+                    "example": "prod_IOz0hBjThsHkIY"
                 },
                 "surface_area": {
                     "type": "number",
@@ -827,13 +823,9 @@ var doc = `{
                     "type": "string",
                     "example": "78 Rue Solférino"
                 },
-                "stripe_customer_id": {
+                "stripe_product_id": {
                     "type": "string",
-                    "example": "cus_IOwdRp9gIlOjTD"
-                },
-                "stripe_payment_method_id": {
-                    "type": "string",
-                    "example": "pm_1Ho8k8CMhQMU3AqAKJwPYAXj"
+                    "example": "prod_IOz0hBjThsHkIY"
                 },
                 "surface_area": {
                     "type": "number",

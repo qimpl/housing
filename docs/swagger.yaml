@@ -53,11 +53,8 @@ definitions:
       street:
         example: 78 Rue Solférino
         type: string
-      stripe_customer_id:
-        example: cus_IOwdRp9gIlOjTD
-        type: string
-      stripe_payment_method_id:
-        example: pm_1Ho8k8CMhQMU3AqAKJwPYAXj
+      stripe_product_id:
+        example: prod_IOz0hBjThsHkIY
         type: string
       surface_area:
         example: 15.5
@@ -113,11 +110,8 @@ definitions:
       street:
         example: 78 Rue Solférino
         type: string
-      stripe_customer_id:
-        example: cus_IOwdRp9gIlOjTD
-        type: string
-      stripe_payment_method_id:
-        example: pm_1Ho8k8CMhQMU3AqAKJwPYAXj
+      stripe_product_id:
+        example: prod_IOz0hBjThsHkIY
         type: string
       surface_area:
         example: 15.5
