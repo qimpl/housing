@@ -746,6 +746,10 @@ var doc = `{
                     "type": "string",
                     "example": "78 Rue Solférino"
                 },
+                "stripe_price_id": {
+                    "type": "string",
+                    "example": "price_1HqMMqCMhQMU3AqApEGAqdNU"
+                },
                 "stripe_product_id": {
                     "type": "string",
                     "example": "prod_IOz0hBjThsHkIY"
@@ -822,6 +826,10 @@ var doc = `{
                 "street": {
                     "type": "string",
                     "example": "78 Rue Solférino"
+                },
+                "stripe_price_id": {
+                    "type": "string",
+                    "example": "price_1HqMMqCMhQMU3AqApEGAqdNU"
                 },
                 "stripe_product_id": {
                     "type": "string",
