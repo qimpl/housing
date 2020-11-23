@@ -41,6 +41,7 @@ CREATE TABLE "housings" (
   "owner_id" uuid NOT NULL,
   "last_tenant_id" uuid,
   "stripe_product_id" varchar(25),
+  "stripe_price_id" varchar(35),
   "created_at" timestamp DEFAULT CURRENT_TIMESTAMP,
   "updated_at" timestamp DEFAULT CURRENT_TIMESTAMP
 );

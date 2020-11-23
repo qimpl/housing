@@ -27,6 +27,7 @@ type Housing struct {
 	OwnerID         uuid.UUID `json:"owner_id" pg:"owner_id" example:"e185deb2-91d5-4ab7-87b3-daaffac00e3d"`
 	LastTenantID    uuid.UUID `json:"last_tenant_id" pg:"last_tenant_id" example:"e185deb2-91d5-4ab7-87b3-daaffac00e3d"`
 	StripeProductID string    `json:"stripe_product_id,omitempty" pg:"stripe_product_id" example:"prod_IOz0hBjThsHkIY"`
+	StripePriceID   string    `json:"stripe_price_id,omitempty" pg:"stripe_price_id" example:"price_1HqMMqCMhQMU3AqApEGAqdNU"`
 	CreatedAt       time.Time `json:"created_at" swaggerignore:"true"`
 	UpdatedAt       time.Time `json:"updated_at" swaggerignore:"true"`
 }
@@ -51,6 +52,7 @@ type HousingBody struct {
 	OwnerID         uuid.UUID `json:"owner_id,omitempty" pg:"owner_id" example:"e185deb2-91d5-4ab7-87b3-daaffac00e3d"`
 	LastTenantID    uuid.UUID `json:"last_tenant_id,omitempty" pg:"last_tenant_id" example:"e185deb2-91d5-4ab7-87b3-daaffac00e3d"`
 	StripeProductID string    `json:"stripe_product_id,omitempty" pg:"stripe_product_id" example:"prod_IOz0hBjThsHkIY"`
+	StripePriceID   string    `json:"stripe_price_id,omitempty" pg:"stripe_price_id" example:"price_1HqMMqCMhQMU3AqApEGAqdNU"`
 }
 
 // UpdatePublicationStatus is used inside publication status PATCH request body
