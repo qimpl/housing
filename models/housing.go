@@ -19,6 +19,8 @@ type Housing struct {
 	City            string    `json:"city" example:"Lille"`
 	Street          string    `json:"street" example:"78 Rue Solférino"`
 	Zip             string    `json:"zip" example:"59000"`
+	Latitude        float64   `json:"latitude" example:"48.862725"`
+	Longitude       float64   `json:"longitude" example:"2.287592"`
 	IsFurnished     bool      `json:"is_furnished" pg:",use_zero" example:"false"`
 	HasElectricity  bool      `json:"has_electricity" pg:",use_zero" example:"true"`
 	HasGas          bool      `json:"has_gas" pg:",use_zero" example:"false"`
@@ -44,6 +46,8 @@ type HousingBody struct {
 	City            string    `json:"city,omitempty" example:"Lille"`
 	Street          string    `json:"street,omitempty" example:"78 Rue Solférino"`
 	Zip             string    `json:"zip,omitempty" example:"59000"`
+	Latitude        float64   `json:"latitude,omitempty" example:"48.862725"`
+	Longitude       float64   `json:"longitude,omitempty" example:"2.287592"`
 	IsFurnished     bool      `json:"is_furnished,omitempty" pg:",use_zero" example:"false"`
 	HasElectricity  bool      `json:"has_electricity,omitempty" pg:",use_zero" example:"true"`
 	HasGas          bool      `json:"has_gas,omitempty" pg:",use_zero" example:"false"`

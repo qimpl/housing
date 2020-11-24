@@ -34,6 +34,8 @@ CREATE TABLE "housings" (
   "city" varchar(100) NOT NULL,
   "zip" varchar(12) NOT NULL,
   "street" varchar(255) NOT NULL,
+  "latitude" double precision,
+  "longitude" double precision,
   "is_furnished" bool DEFAULT FALSE NOT NULL,
   "has_electricity" bool DEFAULT FALSE NOT NULL,
   "has_gas" bool DEFAULT FALSE NOT NULL,

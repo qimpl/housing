@@ -9,6 +9,8 @@
   city: Lille
   zip: 59800
   street: 30 Rue Solférino
+  latitude: 50.63549
+  longitude: 3.046755
   has_electricity: true
   is_published: true
   owner_id: 8a76b8db-0490-4ff4-8bdb-dcd18b582c2f
@@ -26,6 +28,8 @@
   city: Douai
   zip: 59500
   street: 2 Rue Deforest
+  latitude: 50.376541
+  longitude: 3.081623
   is_furnished: true
   has_electricity: true
   has_gas: true
@@ -43,6 +47,8 @@
   city: Arras
   zip: 62000
   street: 89 Rue Méaulens
+  latitude: 50.294453
+  longitude: 2.773688
   has_electricity: true
   has_gas: true
   owner_id: 27fd09df-794d-4f33-8a8e-358f42172a78
@@ -58,6 +64,8 @@
   city: Ronchin
   zip: 59790
   street: 45 Rue du Général Leclerc
+  latitude: 50.60722
+  longitude: 3.080644
   is_published: true
   owner_id: 27fd09df-794d-4f33-8a8e-358f42172a78
   last_tenant_id: RAW=gen_random_uuid()

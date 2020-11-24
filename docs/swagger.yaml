@@ -35,6 +35,12 @@ definitions:
       last_tenant_id:
         example: e185deb2-91d5-4ab7-87b3-daaffac00e3d
         type: string
+      latitude:
+        example: 48.862725
+        type: number
+      longitude:
+        example: 2.287592
+        type: number
       owner_id:
         example: e185deb2-91d5-4ab7-87b3-daaffac00e3d
         type: string
@@ -95,6 +101,12 @@ definitions:
       last_tenant_id:
         example: e185deb2-91d5-4ab7-87b3-daaffac00e3d
         type: string
+      latitude:
+        example: 48.862725
+        type: number
+      longitude:
+        example: 2.287592
+        type: number
       owner_id:
         example: e185deb2-91d5-4ab7-87b3-daaffac00e3d
         type: string
