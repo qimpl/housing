@@ -722,6 +722,14 @@ var doc = `{
                     "type": "string",
                     "example": "e185deb2-91d5-4ab7-87b3-daaffac00e3d"
                 },
+                "latitude": {
+                    "type": "number",
+                    "example": 48.862725
+                },
+                "longitude": {
+                    "type": "number",
+                    "example": 2.287592
+                },
                 "owner_id": {
                     "type": "string",
                     "example": "e185deb2-91d5-4ab7-87b3-daaffac00e3d"
@@ -802,6 +810,14 @@ var doc = `{
                 "last_tenant_id": {
                     "type": "string",
                     "example": "e185deb2-91d5-4ab7-87b3-daaffac00e3d"
+                },
+                "latitude": {
+                    "type": "number",
+                    "example": 48.862725
+                },
+                "longitude": {
+                    "type": "number",
+                    "example": 2.287592
                 },
                 "owner_id": {
                     "type": "string",

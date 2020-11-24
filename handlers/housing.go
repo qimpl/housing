@@ -2,10 +2,12 @@ package handlers
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 
 	"github.com/qimpl/housing/db"
 	"github.com/qimpl/housing/models"
+	"github.com/qimpl/housing/services"
 
 	"github.com/google/uuid"
 	"github.com/gorilla/mux"
@@ -31,6 +33,13 @@ func CreateHousing(w http.ResponseWriter, r *http.Request) {
 		json.NewEncoder(w).Encode(unprocessableEntity.GetError("Body malformed data"))
 
 		return
+	}
+
+	coordinates, _ := services.GetCoordinatesByAddress(fmt.Sprintf("%s, %s %s %s", housing.Street, housing.City, housing.Zip, housing.Country))
+
+	if len(coordinates) > 0 {
+		housing.Latitude = coordinates[0].Geometry.Location.Lat
+		housing.Longitude = coordinates[0].Geometry.Location.Lng
 	}
 
 	housing, err := db.CreateHousing(housing)
@@ -126,6 +135,18 @@ func UpdateHousingByID(w http.ResponseWriter, r *http.Request) {
 		json.NewEncoder(w).Encode(notFound.GetError("The given housing ID doesn't exist"))
 
 		return
+	}
+
+	if housing.Street != updatedHousing.Street ||
+		housing.City != updatedHousing.City ||
+		housing.Zip != updatedHousing.Zip ||
+		housing.Country != updatedHousing.Country {
+
+		coordinates, _ := services.GetCoordinatesByAddress(fmt.Sprintf("%s, %s %s %s", updatedHousing.Street, updatedHousing.City, updatedHousing.Zip, updatedHousing.Country))
+		if len(coordinates) > 0 {
+			updatedHousing.Latitude = coordinates[0].Geometry.Location.Lat
+			updatedHousing.Longitude = coordinates[0].Geometry.Location.Lng
+		}
 	}
 
 	if _, err := db.UpdateHousingByID(housing, updatedHousing); err != nil {
