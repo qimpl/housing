@@ -766,6 +766,10 @@ var doc = `{
                     "type": "number",
                     "example": 15.5
                 },
+                "title": {
+                    "type": "string",
+                    "example": "Appartement 3 piéces Lille centre"
+                },
                 "type_id": {
                     "type": "string",
                     "example": "e185deb2-91d5-4ab7-87b3-daaffac00e3d"
@@ -854,6 +858,10 @@ var doc = `{
                 "surface_area": {
                     "type": "number",
                     "example": 15.5
+                },
+                "title": {
+                    "type": "string",
+                    "example": "Appartement 3 piéces Lille centre"
                 },
                 "type_id": {
                     "type": "string",

@@ -24,6 +24,7 @@ CREATE TRIGGER update_timestamp
 
 CREATE TABLE "housings" (
   "id" uuid PRIMARY KEY UNIQUE DEFAULT gen_random_uuid (),
+  "title" varchar(100) NOT NULL,
   "type_id" uuid REFERENCES "housing_types" (id) NOT NULL,
   "surface_area" float NOT NULL,
   "rent_price" float NOT NULL,

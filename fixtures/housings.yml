@@ -1,4 +1,5 @@
 - id: f6ac45e9-7c93-4136-bca0-57eea520a041
+  title: Appartement 3 piéces Lille Centre
   type_id: 58fc4ce6-3509-4185-845f-3d9ccda6469a
   surface_area: 94.8
   rent_price: 1240
@@ -18,6 +19,7 @@
   status_id: 6c7de9e6-eddd-4139-bda7-5852beff8b49
 
 - id: 5178dacb-9cee-47d8-9673-2422b9b21cae
+  title: Douai - Maison 1930
   type_id: 58fc4ce6-3509-4185-845f-3d9ccda6469a
   surface_area: 45
   rent_price: 500
@@ -38,6 +40,7 @@
   status_id: a04e7587-87a1-4d5a-81c8-286a5fceee39
 
 - type_id: 58fc4ce6-3509-4185-845f-3d9ccda6469a
+  title: Arras maison de campagne
   surface_area: 86.4
   rent_price: 956.50
   rental_charges: 95
@@ -56,6 +59,7 @@
   status_id: f2625e4e-d06b-4ee5-ae99-258493643702
 
 - type_id: 45a74d6b-1249-4c30-9ccd-6d4a3777b794
+  title: Garage 10m2 Ronchin
   surface_area: 13
   rent_price: 60
   rental_charges: 0
