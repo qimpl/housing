@@ -16,7 +16,7 @@ var unProtectedRoutes = []string{"/swagger/"}
 // CreateRouter create housing API routes
 func CreateRouter() {
 	router := mux.NewRouter()
-	APIRouter := router.PathPrefix("/api/v1").Subrouter()
+	APIRouter := router.PathPrefix("/v1").Subrouter()
 
 	APIRouter.PathPrefix("/swagger/").Handler(httpSwagger.WrapHandler)
 
