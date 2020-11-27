@@ -9,6 +9,7 @@ import (
 // Housing represent the database housing table
 type Housing struct {
 	ID              uuid.UUID `json:"id" pg:"id" swaggerignore:"true"`
+	Title           string    `json:"title" example:"Appartement 3 piéces Lille centre"`
 	TypeID          uuid.UUID `json:"type_id" pg:"type_id" example:"e185deb2-91d5-4ab7-87b3-daaffac00e3d"`
 	SurfaceArea     float32   `json:"surface_area" example:"15.5"`
 	RentPrice       float32   `json:"rent_price" example:"60.95"`
@@ -37,6 +38,7 @@ type Housing struct {
 // HousingBody is used as POST/PUT request body
 type HousingBody struct {
 	TypeID          uuid.UUID `json:"type_id,omitempty" pg:"type_id" example:"e185deb2-91d5-4ab7-87b3-daaffac00e3d"`
+	Title           string    `json:"title" example:"Appartement 3 piéces Lille centre"`
 	SurfaceArea     float32   `json:"surface_area,omitempty" example:"15.5"`
 	RentPrice       float32   `json:"rent_price,omitempty" example:"60.95"`
 	RentalCharges   float32   `json:"rental_charges,omitempty" example:"60.9"`

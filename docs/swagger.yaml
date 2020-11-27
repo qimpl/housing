@@ -68,6 +68,9 @@ definitions:
       surface_area:
         example: 15.5
         type: number
+      title:
+        example: Appartement 3 piéces Lille centre
+        type: string
       type_id:
         example: e185deb2-91d5-4ab7-87b3-daaffac00e3d
         type: string
@@ -134,6 +137,9 @@ definitions:
       surface_area:
         example: 15.5
         type: number
+      title:
+        example: Appartement 3 piéces Lille centre
+        type: string
       type_id:
         example: e185deb2-91d5-4ab7-87b3-daaffac00e3d
         type: string
