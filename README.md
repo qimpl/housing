@@ -6,7 +6,7 @@ Part of the main qimpl application.
 
 ## API Documentation
 
-Swagger API documentation can be found at `/api/v1/swagger`
+Swagger API documentation can be found at `/v1/swagger`
 
 ### Generate Documentation
 
