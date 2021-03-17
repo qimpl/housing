@@ -74,3 +74,155 @@
   owner_id: 27fd09df-794d-4f33-8a8e-358f42172a78
   last_tenant_id: RAW=gen_random_uuid()
   status_id: a04e7587-87a1-4d5a-81c8-286a5fceee39
+
+- type_id: 58fc4ce6-3509-4185-845f-3d9ccda6469a
+  title: Lille Appartement
+  surface_area: 86.4
+  rent_price: 856.50
+  rental_charges: 95
+  description: Au dernier étage d'une résidence sécurisée avec ascenseur, très bel appartement type 3 meublé, beau séjour lumineux, balcon ensoleillé, cuisine séparée entièrement équipée, 2 belles chambres, Salle de bains avec baignoire, vue magnifique et panoramique sur le Beffroi de l'Hôtel de Ville  Magnifique
+  country: FR
+  state: Nord
+  city: Lille
+  zip: 59000
+  street: 89 Rue Gustave Deloris
+  latitude: 50.636115
+  longitude: 3.067338
+  has_electricity: true
+  has_gas: true
+  owner_id: 27fd09df-794d-4f33-8a8e-358f42172a78
+  last_tenant_id: RAW=gen_random_uuid()
+  status_id: f2625e4e-d06b-4ee5-ae99-258493643702
+
+- type_id: 58fc4ce6-3509-4185-845f-3d9ccda6469a
+  title: Lille studio
+  surface_area: 16.4
+  rent_price: 300.50
+  rental_charges: 95
+  description: Je loue un studio meublé uniquement à un(e) étudiant (e) situé au 2eme étage côté cour d'un immeuble dans le quartier Solferino place des Halles. Le coin couchage est en mezzanine. La kitchenette comprend un four, un micro-ondes, 2 plaques électriques et un réfrigérateur.
+  country: FR
+  state: Nord
+  city: Lille
+  zip: 59000
+  street: 1 rue Solferino
+  latitude: 50.636120
+  longitude: 3.067338
+  has_electricity: true
+  has_gas: true
+  owner_id: 27fd09df-794d-4f33-8a8e-358f42172a78
+  last_tenant_id: RAW=gen_random_uuid()
+  status_id: f2625e4e-d06b-4ee5-ae99-258493643702
+
+- type_id: 58fc4ce6-3509-4185-845f-3d9ccda6469a
+  title: Lille appartement 2piéces
+  surface_area: 36.4
+  rent_price: 560.50
+  rental_charges: 95
+  description: Je loue un studio meublé uniquement à un(e) étudiant (e) situé au 2eme étage côté cour d'un immeuble dans le quartier Solferino place des Halles. Le coin couchage est en mezzanine. La kitchenette comprend un four, un micro-ondes, 2 plaques électriques et un réfrigérateur.
+  country: FR
+  state: Nord
+  city: Lille
+  zip: 59000
+  street: 40 rue des Postes
+  latitude: 50.6361400
+  longitude: 3.067338
+  has_electricity: true
+  has_gas: true
+  owner_id: 27fd09df-794d-4f33-8a8e-358f42172a78
+  last_tenant_id: RAW=gen_random_uuid()
+  status_id: f2625e4e-d06b-4ee5-ae99-258493643702
+
+- type_id: 58fc4ce6-3509-4185-845f-3d9ccda6469a
+  title: Lille appartement
+  surface_area: 40.5
+  rent_price: 700
+  rental_charges: 95
+  description: A louer en meublé au 34, rue des Bouchers dans un petit immeuble de 3 étages, au 2eme et au premier étage 2 T2 meublés, toutes commodités dans un des quartiers les plus typiques du vieux Lille.
+  country: FR
+  state: Nord
+  city: Lille
+  zip: 59000
+  street: 40 rue de Béthune
+  latitude: 50.636120
+  longitude: 3.067338
+  has_electricity: true
+  has_gas: true
+  owner_id: 27fd09df-794d-4f33-8a8e-358f42172a78
+  last_tenant_id: RAW=gen_random_uuid()
+  status_id: f2625e4e-d06b-4ee5-ae99-258493643702
+
+- type_id: 58fc4ce6-3509-4185-845f-3d9ccda6469a
+  title: Villeneuve d'ascq maisonette
+  surface_area: 70
+  rent_price: 700
+  rental_charges: 95
+  description: A louer en meublé au 34, rue des Bouchers dans un petit immeuble de 3 étages, au 2eme et au premier étage 2 T2 meublés, toutes commodités dans un des quartiers les plus typiques du vieux Lille.
+  country: FR
+  state: Nord
+  city: Villeneuve d'Ascq
+  zip: 59650
+  street: 40 rue d'ascq
+  latitude: 50.621065
+  longitude: 3.141756
+  has_electricity: true
+  has_gas: true
+  owner_id: 27fd09df-794d-4f33-8a8e-358f42172a78
+  last_tenant_id: RAW=gen_random_uuid()
+  status_id: f2625e4e-d06b-4ee5-ae99-258493643702
+
+- type_id: 58fc4ce6-3509-4185-845f-3d9ccda6469a
+  title: Villeneuve d'ascq maison
+  surface_area: 110
+  rent_price: 1200
+  rental_charges: 95
+  description: Magnifique appartement type 5 meublé, 175 m², dans un environnement exceptionnel et privilégié, se composant d'un hall d'entrée, un grand séjour lumineux orienté S/O, une cuisine entièrement équipée avec coin repas, une suite parentale avec dressing et salle de bain privatif,  un espace nuit avec trois chambres et un bureau , une salle de douche, une buanderie.
+  country: FR
+  state: Nord
+  city: Villeneuve d'Ascq
+  zip: 59650
+  street: 40 rue d'ascq
+  latitude: 50.621065
+  longitude: 3.141756
+  has_electricity: true
+  has_gas: true
+  owner_id: 27fd09df-794d-4f33-8a8e-358f42172a78
+  last_tenant_id: RAW=gen_random_uuid()
+  status_id: f2625e4e-d06b-4ee5-ae99-258493643702
+
+- type_id: 58fc4ce6-3509-4185-845f-3d9ccda6469a
+  title: Villeneuve d'ascq maison de standing
+  surface_area: 110
+  rent_price: 1200
+  rental_charges: 95
+  description: Magnifique appartement type 5 meublé, 175 m², dans un environnement exceptionnel et privilégié, se composant d'un hall d'entrée, un grand séjour lumineux orienté S/O, une cuisine entièrement équipée avec coin repas, une suite parentale avec dressing et salle de bain privatif,  un espace nuit avec trois chambres et un bureau , une salle de douche, une buanderie.
+  country: FR
+  state: Nord
+  city: Villeneuve d'Ascq
+  zip: 59650
+  street: 40 rue d'ascq
+  latitude: 50.621065
+  longitude: 3.141756
+  has_electricity: true
+  has_gas: true
+  owner_id: 27fd09df-794d-4f33-8a8e-358f42172a78
+  last_tenant_id: RAW=gen_random_uuid()
+  status_id: f2625e4e-d06b-4ee5-ae99-258493643702
+
+- type_id: 58fc4ce6-3509-4185-845f-3d9ccda6469a
+  title: Hem proche métro
+  surface_area: 80
+  rent_price: 670
+  rental_charges: 95
+  description:
+  country: FR
+  state: Nord
+  city: Hem
+  zip: 59510
+  street: 40 rue du calvaire
+  latitude: 50.657396
+  longitude: 3.194681
+  has_electricity: true
+  has_gas: true
+  owner_id: 27fd09df-794d-4f33-8a8e-358f42172a78
+  last_tenant_id: RAW=gen_random_uuid()
+  status_id: f2625e4e-d06b-4ee5-ae99-258493643702
