@@ -105,7 +105,7 @@
   city: Lille
   zip: 59000
   street: 1 rue Solferino
-  latitude: 50.636120
+  latitude: 50.636160
   longitude: 3.067338
   has_electricity: true
   has_gas: true
@@ -124,7 +124,7 @@
   city: Lille
   zip: 59000
   street: 40 rue des Postes
-  latitude: 50.6361400
+  latitude: 50.636140
   longitude: 3.067338
   has_electricity: true
   has_gas: true
@@ -181,7 +181,7 @@
   city: Villeneuve d'Ascq
   zip: 59650
   street: 40 rue d'ascq
-  latitude: 50.621065
+  latitude: 50.621068
   longitude: 3.141756
   has_electricity: true
   has_gas: true
@@ -201,7 +201,7 @@
   zip: 59650
   street: 40 rue d'ascq
   latitude: 50.621065
-  longitude: 3.141756
+  longitude: 3.141750
   has_electricity: true
   has_gas: true
   owner_id: 27fd09df-794d-4f33-8a8e-358f42172a78
@@ -219,7 +219,7 @@
   city: Hem
   zip: 59510
   street: 40 rue du calvaire
-  latitude: 50.657396
+  latitude: 50.657392
   longitude: 3.194681
   has_electricity: true
   has_gas: true
