@@ -40,4 +40,9 @@ func createHousingRouter(router *mux.Router) {
 	housingRouter.
 		HandleFunc("/owner/{owner_id:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}}", handlers.GetHousingByOwnerID).
 		Methods("GET")
+
+	housingRouter.
+		HandleFunc("/search", handlers.GetFilteredHousings).
+		Queries("city", "{city}", "type_id", "{type_id}", "price", "{price}", "size", "{size}", "status", "{status}").
+		Methods("GET")
 }

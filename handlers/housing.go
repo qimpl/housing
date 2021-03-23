@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"strconv"
 
 	"github.com/qimpl/housing/db"
 	"github.com/qimpl/housing/models"
@@ -65,7 +66,7 @@ func CreateHousing(w http.ResponseWriter, r *http.Request) {
 // @Failure 400 {object} models.ErrorResponse
 // @Router /housing [get]
 func GetAllHousing(w http.ResponseWriter, r *http.Request) {
-	housing, err := db.GetAllHousing()
+	housings, err := db.GetAllHousing()
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		var badRequest *models.BadRequest
@@ -75,7 +76,7 @@ func GetAllHousing(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(housing)
+	json.NewEncoder(w).Encode(housings)
 }
 
 // DeleteHousingByID delete a given housing with its ID
@@ -313,4 +314,37 @@ func UpdateHousingPublicationStatus(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.WriteHeader(http.StatusNoContent)
+}
+
+// GetFilteredHousings returns all housings of given filters
+// @Summary Get all housings depending on filters
+// @Description Search for all housings with given filters
+// @Tags Housing
+// @Produce json
+// @Param type_id path string true "Type ID"
+// @Param city path string true "City"
+// @Param price path string true "Rent Price"
+// @Param size path string true "Surface Area"
+// @Param status_id path string true "Status ID"
+// @Success 200 {object} []models.Housing
+// @Failure 400 {object} models.ErrorResponse
+// @Router /housing/filter/{type_id}?{price}?{size} [get]
+func GetFilteredHousings(w http.ResponseWriter, r *http.Request) {
+	housingType := uuid.MustParse(mux.Vars(r)["type_id"])
+	city := mux.Vars(r)["city"]
+	housingRentPrice, _ := strconv.ParseFloat(mux.Vars(r)["price"], 32)
+	housingSurfaceArea, _ := strconv.ParseFloat(mux.Vars(r)["size"], 32)
+	housingStatus := uuid.MustParse(mux.Vars(r)["status"])
+
+	housings, err := db.GetFilteredHousing(housingType, city, float32(housingRentPrice), float32(housingSurfaceArea), housingStatus)
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		var badRequest *models.BadRequest
+		json.NewEncoder(w).Encode(badRequest.GetError("An error occurred during housing retrieval"))
+
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(housings)
 }

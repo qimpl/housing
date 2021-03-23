@@ -99,3 +99,20 @@ func GetHousingByOwnerID(ownerID uuid.UUID) ([]models.Housing, error) {
 
 	return housings, nil
 }
+
+// GetFilteredHousing find all housing with given filters
+func GetFilteredHousing(housingType uuid.UUID, city string, housingRentPrice float32, housingSurfaceArea float32, housingStatus uuid.UUID) ([]models.Housing, error) {
+	var housings []models.Housing
+
+	if err := Db.Model(&housings).
+		Where("city = ?", city).
+		Where("type_id = ?", housingType).
+		Where("rent_price <= ?", housingRentPrice).
+		Where("surface_area >= ?", housingSurfaceArea).
+		Where("status_id = ?", housingStatus).
+		Select(); err != nil {
+		return nil, err
+	}
+
+	return housings, nil
+}
