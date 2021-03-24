@@ -18,24 +18,24 @@ func CreateHousing(housing *models.Housing) (*models.Housing, error) {
 
 // GetAllHousing get all housings from the database
 func GetAllHousing() ([]models.Housing, error) {
-	var housing []models.Housing
+	housings := make([]models.Housing, 0)
 
-	if err := Db.Model(&housing).Order("created_at").Select(); err != nil {
+	if err := Db.Model(&housings).Order("created_at").Select(); err != nil {
 		return nil, err
 	}
 
-	return housing, nil
+	return housings, nil
 }
 
 // GetHousingByType get all housings from the database the match a given type
 func GetHousingByType(housingTypeID uuid.UUID) ([]models.Housing, error) {
-	var housing []models.Housing
+	housings := make([]models.Housing, 0)
 
-	if err := Db.Model(&housing).Order("created_at").Where("type_id = ?", housingTypeID.String()).Select(); err != nil {
+	if err := Db.Model(&housings).Order("created_at").Where("type_id = ?", housingTypeID.String()).Select(); err != nil {
 		return nil, err
 	}
 
-	return housing, nil
+	return housings, nil
 }
 
 // DeleteHousingByID delete a given housing
@@ -91,7 +91,7 @@ func UpdateHousingPublicationStatus(housingID uuid.UUID, isPublished bool) error
 
 // GetHousingByOwnerID find all housings with a given owner ID
 func GetHousingByOwnerID(ownerID uuid.UUID) ([]models.Housing, error) {
-	var housings []models.Housing
+	housings := make([]models.Housing, 0)
 
 	if err := Db.Model(&housings).Where("owner_id = ?", ownerID).Select(); err != nil {
 		return nil, err
@@ -101,16 +101,23 @@ func GetHousingByOwnerID(ownerID uuid.UUID) ([]models.Housing, error) {
 }
 
 // GetFilteredHousing find all housing with given filters
-func GetFilteredHousing(housingType uuid.UUID, city string, housingRentPrice float32, housingSurfaceArea float32, housingStatus uuid.UUID) ([]models.Housing, error) {
-	var housings []models.Housing
+func GetFilteredHousing(housingType uuid.UUID, city string, housingRentPrice string, housingSurfaceArea string, housingStatus uuid.UUID) ([]models.Housing, error) {
+	housings := make([]models.Housing, 0)
 
-	if err := Db.Model(&housings).
+	query := Db.Model(&housings).
 		Where("city = ?", city).
 		Where("type_id = ?", housingType).
-		Where("rent_price <= ?", housingRentPrice).
-		Where("surface_area >= ?", housingSurfaceArea).
-		Where("status_id = ?", housingStatus).
-		Select(); err != nil {
+		Where("status_id = ?", housingStatus)
+
+	if len(housingRentPrice) != 0 {
+		query.Where("rent_price <= ?", housingRentPrice)
+	}
+
+	if len(housingSurfaceArea) != 0 {
+		query.Where("surface_area >= ?", housingSurfaceArea)
+	}
+
+	if err := query.Select(); err != nil {
 		return nil, err
 	}
 

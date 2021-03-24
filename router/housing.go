@@ -43,6 +43,6 @@ func createHousingRouter(router *mux.Router) {
 
 	housingRouter.
 		HandleFunc("/search", handlers.GetFilteredHousings).
-		Queries("city", "{city}", "type_id", "{type_id}", "price", "{price}", "size", "{size}", "status", "{status}").
+		Queries("city", "{city}", "type_id", "{type_id}", "status", "{status}").
 		Methods("GET")
 }

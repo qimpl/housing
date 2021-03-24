@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"strconv"
 
 	"github.com/qimpl/housing/db"
 	"github.com/qimpl/housing/models"
@@ -332,11 +331,12 @@ func UpdateHousingPublicationStatus(w http.ResponseWriter, r *http.Request) {
 func GetFilteredHousings(w http.ResponseWriter, r *http.Request) {
 	housingType := uuid.MustParse(mux.Vars(r)["type_id"])
 	city := mux.Vars(r)["city"]
-	housingRentPrice, _ := strconv.ParseFloat(mux.Vars(r)["price"], 32)
-	housingSurfaceArea, _ := strconv.ParseFloat(mux.Vars(r)["size"], 32)
 	housingStatus := uuid.MustParse(mux.Vars(r)["status"])
+	v := r.URL.Query()
+	housingRentPrice := v.Get("max_price")
+	housingSurfaceArea := v.Get("min_size")
 
-	housings, err := db.GetFilteredHousing(housingType, city, float32(housingRentPrice), float32(housingSurfaceArea), housingStatus)
+	housings, err := db.GetFilteredHousing(housingType, city, housingRentPrice, housingSurfaceArea, housingStatus)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		var badRequest *models.BadRequest
