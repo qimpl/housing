@@ -98,6 +98,72 @@ var doc = `{
                 }
             }
         },
+        "/housing/filter/{type_id}": {
+            "get": {
+                "description": "Search for all housings with given filters",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Housing"
+                ],
+                "summary": "Get all housings depending on filters",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Type ID",
+                        "name": "type_id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "City",
+                        "name": "city",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Rent Price",
+                        "name": "price",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Surface Area",
+                        "name": "size",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Status ID",
+                        "name": "status_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Housing"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/housing/owner/{owner_id}": {
             "get": {
                 "description": "Search for all housings with a given owner ID",
@@ -734,6 +800,12 @@ var doc = `{
                     "type": "string",
                     "example": "e185deb2-91d5-4ab7-87b3-daaffac00e3d"
                 },
+                "pictures": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
                 "rent_price": {
                     "type": "number",
                     "example": 60.95
@@ -826,6 +898,12 @@ var doc = `{
                 "owner_id": {
                     "type": "string",
                     "example": "e185deb2-91d5-4ab7-87b3-daaffac00e3d"
+                },
+                "pictures": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
                 },
                 "rent_price": {
                     "type": "number",
@@ -946,7 +1024,7 @@ type swaggerInfo struct {
 var SwaggerInfo = swaggerInfo{
 	Version:     "0.1.0",
 	Host:        "",
-	BasePath:    "/api/v1",
+	BasePath:    "/v1",
 	Schemes:     []string{},
 	Title:       "Housing API",
 	Description: "",

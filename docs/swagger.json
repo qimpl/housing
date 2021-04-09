@@ -6,7 +6,7 @@
         "license": {},
         "version": "0.1.0"
     },
-    "basePath": "/api/v1",
+    "basePath": "/v1",
     "paths": {
         "/housing": {
             "get": {
@@ -74,6 +74,72 @@
                     },
                     "422": {
                         "description": "Unprocessable Entity",
+                        "schema": {
+                            "$ref": "#/definitions/models.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/housing/filter/{type_id}": {
+            "get": {
+                "description": "Search for all housings with given filters",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Housing"
+                ],
+                "summary": "Get all housings depending on filters",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Type ID",
+                        "name": "type_id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "City",
+                        "name": "city",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Rent Price",
+                        "name": "price",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Surface Area",
+                        "name": "size",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Status ID",
+                        "name": "status_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Housing"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
                         "schema": {
                             "$ref": "#/definitions/models.ErrorResponse"
                         }
@@ -717,6 +783,12 @@
                     "type": "string",
                     "example": "e185deb2-91d5-4ab7-87b3-daaffac00e3d"
                 },
+                "pictures": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
                 "rent_price": {
                     "type": "number",
                     "example": 60.95
@@ -809,6 +881,12 @@
                 "owner_id": {
                     "type": "string",
                     "example": "e185deb2-91d5-4ab7-87b3-daaffac00e3d"
+                },
+                "pictures": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
                 },
                 "rent_price": {
                     "type": "number",

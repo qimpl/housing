@@ -1,6 +1,8 @@
 package handlers
 
 import (
+	"bytes"
+	"encoding/base64"
 	"encoding/json"
 	"fmt"
 	"net/http"
@@ -8,6 +10,7 @@ import (
 	"github.com/qimpl/housing/db"
 	"github.com/qimpl/housing/models"
 	"github.com/qimpl/housing/services"
+	"github.com/qimpl/housing/storage"
 
 	"github.com/google/uuid"
 	"github.com/gorilla/mux"
@@ -35,7 +38,9 @@ func CreateHousing(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	coordinates, _ := services.GetCoordinatesByAddress(fmt.Sprintf("%s, %s %s %s", housing.Street, housing.City, housing.Zip, housing.Country))
+	coordinates, _ := services.GetCoordinatesByAddress(
+		fmt.Sprintf("%s, %s %s %s", housing.Street, housing.City, housing.Zip, housing.Country),
+	)
 
 	if len(coordinates) > 0 {
 		housing.Latitude = coordinates[0].Geometry.Location.Lat
@@ -43,12 +48,35 @@ func CreateHousing(w http.ResponseWriter, r *http.Request) {
 	}
 
 	housing, err := db.CreateHousing(housing)
+	var badRequest *models.BadRequest
+
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
-		var badRequest *models.BadRequest
 		json.NewEncoder(w).Encode(badRequest.GetError("Housing creation failed"))
 
 		return
+	}
+
+	if housing.Pictures != nil {
+		for index, picture := range housing.Pictures {
+			decodedImage, err := base64.StdEncoding.DecodeString(picture)
+
+			if err != nil {
+				w.WriteHeader(http.StatusBadRequest)
+				json.NewEncoder(w).Encode(badRequest.GetError("An error occurred during profile picture decoding"))
+
+				return
+			}
+
+			imageReader := bytes.NewReader(decodedImage)
+
+			storage.AddToBucket(
+				fmt.Sprintf("%s/housing_picture_%s_%d.png", housing.ID, housing.ID, index+1),
+				imageReader,
+				imageReader.Size(),
+				http.DetectContentType(decodedImage),
+			)
+		}
 	}
 
 	w.Header().Set("Content-Type", "application/json")
@@ -66,12 +94,25 @@ func CreateHousing(w http.ResponseWriter, r *http.Request) {
 // @Router /housing [get]
 func GetAllHousing(w http.ResponseWriter, r *http.Request) {
 	housings, err := db.GetAllHousing()
+	var badRequest *models.BadRequest
+
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
-		var badRequest *models.BadRequest
 		json.NewEncoder(w).Encode(badRequest.GetError("An error occurred during housing retrieval"))
 
 		return
+	}
+
+	for index, housing := range housings {
+		for i := 1; i <= 5; i++ {
+			if picture, err := storage.GetFromBucket(
+				fmt.Sprintf("%s/housing_picture_%s_%d.png", housing.ID, housing.ID, i),
+			); err == nil {
+				housing.Pictures = append(housing.Pictures, picture)
+			}
+		}
+
+		housings[index] = housing
 	}
 
 	w.Header().Set("Content-Type", "application/json")
@@ -239,6 +280,14 @@ func GetHousingByID(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	for i := 1; i <= 5; i++ {
+		if picture, err := storage.GetFromBucket(
+			fmt.Sprintf("%s/housing_picture_%s_%d.png", housing.ID, housing.ID, i),
+		); err == nil {
+			housing.Pictures = append(housing.Pictures, picture)
+		}
+	}
+
 	json.NewEncoder(w).Encode(housing)
 }
 
@@ -327,7 +376,7 @@ func UpdateHousingPublicationStatus(w http.ResponseWriter, r *http.Request) {
 // @Param status_id path string true "Status ID"
 // @Success 200 {object} []models.Housing
 // @Failure 400 {object} models.ErrorResponse
-// @Router /housing/filter/{type_id}?{price}?{size} [get]
+// @Router /housing/filter/{type_id} [get]
 func GetFilteredHousings(w http.ResponseWriter, r *http.Request) {
 	housingType := uuid.MustParse(mux.Vars(r)["type_id"])
 	city := mux.Vars(r)["city"]
