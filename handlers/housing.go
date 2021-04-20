@@ -394,6 +394,16 @@ func GetFilteredHousings(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	for index, housing := range housings {
+		if picture, err := storage.GetFromBucket(
+			fmt.Sprintf("%s/housing_picture_%s_1.png", housing.ID, housing.ID),
+		); err == nil {
+			housing.Pictures = append(housing.Pictures, picture)
+		}
+
+		housings[index] = housing
+	}
+
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(housings)
 }
