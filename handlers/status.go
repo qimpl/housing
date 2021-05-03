@@ -2,7 +2,9 @@ package handlers
 
 import (
 	"encoding/json"
+	"log"
 	"net/http"
+	"time"
 
 	"github.com/qimpl/housing/db"
 	"github.com/qimpl/housing/models"
@@ -26,6 +28,7 @@ func CreateHousingStatus(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusUnprocessableEntity)
 		var unprocessableEntity *models.UnprocessableEntity
 		json.NewEncoder(w).Encode(unprocessableEntity.GetError("Malformed body"))
+		log.Printf("Status - Create - Body Error - %s : %s\n", time.Now(), err)
 
 		return
 	}
@@ -35,6 +38,7 @@ func CreateHousingStatus(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusBadRequest)
 		var badRequest *models.BadRequest
 		json.NewEncoder(w).Encode(badRequest.GetError("Housing status creation failed"))
+		log.Printf("Status - Create - DB Creation Error - %s : %s\n", time.Now(), err)
 
 		return
 	}
@@ -58,6 +62,7 @@ func GetAllHousingStatuses(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusBadRequest)
 		var badRequest *models.BadRequest
 		json.NewEncoder(w).Encode(badRequest.GetError("An error occurred during housing statuses retrieval"))
+		log.Printf("Status - Get All - DB Retrieval Error - %s : %s\n", time.Now(), err)
 
 		return
 	}

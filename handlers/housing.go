@@ -5,7 +5,9 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
+	"time"
 
 	"github.com/qimpl/housing/db"
 	"github.com/qimpl/housing/models"
@@ -34,6 +36,7 @@ func CreateHousing(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusUnprocessableEntity)
 		var unprocessableEntity *models.UnprocessableEntity
 		json.NewEncoder(w).Encode(unprocessableEntity.GetError("Body malformed data"))
+		log.Printf("Housing - Create - Body Error - %s : %s\n", time.Now(), err)
 
 		return
 	}
@@ -53,6 +56,7 @@ func CreateHousing(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		json.NewEncoder(w).Encode(badRequest.GetError("Housing creation failed"))
+		log.Printf("Housing - Create - Creation Error - %s : %s\n", time.Now(), err)
 
 		return
 	}
@@ -64,6 +68,7 @@ func CreateHousing(w http.ResponseWriter, r *http.Request) {
 			if err != nil {
 				w.WriteHeader(http.StatusBadRequest)
 				json.NewEncoder(w).Encode(badRequest.GetError("An error occurred during profile picture decoding"))
+				log.Printf("Housing - Create - Picture Decoding Error - %s : %s\n", time.Now(), err)
 
 				return
 			}
@@ -99,6 +104,7 @@ func GetAllHousing(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		json.NewEncoder(w).Encode(badRequest.GetError("An error occurred during housing retrieval"))
+		log.Printf("Housing - Get All - DB Retrieval Error - %s : %s\n", time.Now(), err)
 
 		return
 	}
@@ -131,7 +137,8 @@ func DeleteHousingByID(w http.ResponseWriter, r *http.Request) {
 	if err := db.DeleteHousingByID(uuid.MustParse(mux.Vars(r)["housing_id"])); err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		var badRequest *models.BadRequest
-		json.NewEncoder(w).Encode(badRequest.GetError("An error occurred during housing update"))
+		json.NewEncoder(w).Encode(badRequest.GetError("An error occurred during housing deletion"))
+		log.Printf("Housing - Delete - DB Error - %s : %s\n", time.Now(), err)
 
 		return
 	}
@@ -165,6 +172,7 @@ func UpdateHousingByID(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusUnprocessableEntity)
 		var unprocessableEntity *models.UnprocessableEntity
 		json.NewEncoder(w).Encode(unprocessableEntity.GetError("Body malformed data"))
+		log.Printf("Housing - Update - Body Error - %s : %s\n", time.Now(), err)
 
 		return
 	}
@@ -174,6 +182,7 @@ func UpdateHousingByID(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusNotFound)
 		var notFound *models.NotFound
 		json.NewEncoder(w).Encode(notFound.GetError("The given housing ID doesn't exist"))
+		log.Printf("Housing - Update - DB retrieval Error - %s : %s\n", time.Now(), err)
 
 		return
 	}
@@ -194,6 +203,7 @@ func UpdateHousingByID(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusBadRequest)
 		var badRequest *models.BadRequest
 		json.NewEncoder(w).Encode(badRequest.GetError("An error occurred during housing update"))
+		log.Printf("Housing - Update - DB Update Error - %s : %s\n", time.Now(), err)
 
 		return
 	}
@@ -225,6 +235,7 @@ func UpdateHousingStatus(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusUnprocessableEntity)
 		var unprocessableEntity *models.UnprocessableEntity
 		json.NewEncoder(w).Encode(unprocessableEntity.GetError("Body malformed data"))
+		log.Printf("Housing - Update Status - Body Error - %s : %s\n", time.Now(), err)
 
 		return
 	}
@@ -234,6 +245,7 @@ func UpdateHousingStatus(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusNotFound)
 		var notFound *models.NotFound
 		json.NewEncoder(w).Encode(notFound.GetError("The given housing ID doesn't exist"))
+		log.Printf("Housing - Update Status - Housing ID Error - %s : %s\n", time.Now(), err)
 
 		return
 	}
@@ -243,6 +255,7 @@ func UpdateHousingStatus(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusNotFound)
 		var notFound *models.NotFound
 		json.NewEncoder(w).Encode(notFound.GetError("The given status ID doesn't exist"))
+		log.Printf("Housing - Update Status - Status ID Error - %s : %s\n", time.Now(), err)
 
 		return
 	}
@@ -252,6 +265,7 @@ func UpdateHousingStatus(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusBadRequest)
 		var badRequest *models.BadRequest
 		json.NewEncoder(w).Encode(badRequest.GetError("An error occurred during housing status update"))
+		log.Printf("Housing - Update Status - DB Update Error - %s : %s\n", time.Now(), err)
 
 		return
 	}
@@ -276,6 +290,7 @@ func GetHousingByID(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusBadRequest)
 		var badRequest *models.BadRequest
 		json.NewEncoder(w).Encode(badRequest.GetError("An error occurred during housing retrieval"))
+		log.Printf("Housing - Get By ID - DB Retrieval Error - %s : %s\n", time.Now(), err)
 
 		return
 	}
@@ -308,6 +323,7 @@ func GetHousingByOwnerID(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusBadRequest)
 		var badRequest *models.BadRequest
 		json.NewEncoder(w).Encode(badRequest.GetError("An error occurred during housings list retrieval"))
+		log.Printf("Housing - Get By Owner ID - DB Retrieval Error - %s : %s\n", time.Now(), err)
 
 		return
 	}
@@ -339,6 +355,7 @@ func UpdateHousingPublicationStatus(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusUnprocessableEntity)
 		var unprocessableEntity *models.UnprocessableEntity
 		json.NewEncoder(w).Encode(unprocessableEntity.GetError("Body malformed data"))
+		log.Printf("Housing - Update Publication Status - Body Error - %s : %s\n", time.Now(), err)
 
 		return
 	}
@@ -348,6 +365,7 @@ func UpdateHousingPublicationStatus(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusNotFound)
 		var notFound *models.NotFound
 		json.NewEncoder(w).Encode(notFound.GetError("The given housing ID doesn't exist"))
+		log.Printf("Housing - Update Publication Status - DB ID Retrieval Error - %s : %s\n", time.Now(), err)
 
 		return
 	}
@@ -357,6 +375,7 @@ func UpdateHousingPublicationStatus(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusBadRequest)
 		var badRequest *models.BadRequest
 		json.NewEncoder(w).Encode(badRequest.GetError("An error occurred during housing status update"))
+		log.Printf("Housing - Update Publication Status - Status Update Error - %s : %s\n", time.Now(), err)
 
 		return
 	}
@@ -390,6 +409,7 @@ func GetFilteredHousings(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusBadRequest)
 		var badRequest *models.BadRequest
 		json.NewEncoder(w).Encode(badRequest.GetError("An error occurred during housing retrieval"))
+		log.Printf("Housing - Get Filtered - DB Retrieval Error - %s : %s\n", time.Now(), err)
 
 		return
 	}
