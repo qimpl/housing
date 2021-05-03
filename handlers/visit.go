@@ -2,7 +2,9 @@ package handlers
 
 import (
 	"encoding/json"
+	"log"
 	"net/http"
+	"time"
 
 	"github.com/qimpl/housing/db"
 	"github.com/qimpl/housing/models"
@@ -30,6 +32,7 @@ func CreateVisit(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusUnprocessableEntity)
 		var unprocessableEntity *models.UnprocessableEntity
 		json.NewEncoder(w).Encode(unprocessableEntity.GetError("Body malformed data"))
+		log.Printf("Visit - Create - Body Error - %s : %s\n", time.Now(), err)
 
 		return
 	}
@@ -39,6 +42,7 @@ func CreateVisit(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusBadRequest)
 		var badRequest *models.BadRequest
 		json.NewEncoder(w).Encode(badRequest.GetError("Visit creation failed"))
+		log.Printf("Visit - Create - DB Creation Error - %s : %s\n", time.Now(), err)
 
 		return
 	}
@@ -65,6 +69,7 @@ func GetVisitByHousingID(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusNotFound)
 		var notFound *models.NotFound
 		json.NewEncoder(w).Encode(notFound.GetError("The given housing ID doesn't exist"))
+		log.Printf("Visit - Get By ID - DB ID Retrieval Error - %s : %s\n", time.Now(), err)
 
 		return
 	}
@@ -74,6 +79,7 @@ func GetVisitByHousingID(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusBadRequest)
 		var badRequest *models.BadRequest
 		json.NewEncoder(w).Encode(badRequest.GetError("An error occurred during housing visits retrieval"))
+		log.Printf("Visit - Get By ID - DB Visit Retrieval Error - %s : %s\n", time.Now(), err)
 
 		return
 	}
@@ -99,6 +105,7 @@ func AcceptVisit(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusNotFound)
 		var notFound *models.NotFound
 		json.NewEncoder(w).Encode(notFound.GetError("The given visit booking ID doesn't exist"))
+		log.Printf("Visit - Accept - DB ID Retrieval Error - %s : %s\n", time.Now(), err)
 
 		return
 	}
@@ -108,6 +115,7 @@ func AcceptVisit(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusBadRequest)
 		var badRequest *models.BadRequest
 		json.NewEncoder(w).Encode(badRequest.GetError("An error occurred during visit booking acceptation retrieval"))
+		log.Printf("Visit - Accept - DB Booking Acceptation Retrieval Error - %s : %s\n", time.Now(), err)
 
 		return
 	}

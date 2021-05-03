@@ -2,7 +2,9 @@ package handlers
 
 import (
 	"encoding/json"
+	"log"
 	"net/http"
+	"time"
 
 	"github.com/google/uuid"
 	"github.com/gorilla/mux"
@@ -28,6 +30,7 @@ func CreateHousingType(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusUnprocessableEntity)
 		var unprocessableEntity *models.UnprocessableEntity
 		json.NewEncoder(w).Encode(unprocessableEntity.GetError("Malformed body"))
+		log.Printf("Housing Type - Create - Body Error - %s : %s\n", time.Now(), err)
 
 		return
 	}
@@ -37,6 +40,7 @@ func CreateHousingType(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusBadRequest)
 		var badRequest *models.BadRequest
 		json.NewEncoder(w).Encode(badRequest.GetError("Housing type creation failed"))
+		log.Printf("Housing Type - Create - Creation Error - %s : %s\n", time.Now(), err)
 
 		return
 	}
@@ -60,6 +64,7 @@ func GetAllHousingTypes(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusBadRequest)
 		var badRequest *models.BadRequest
 		json.NewEncoder(w).Encode(badRequest.GetError("An error occurred during housing types retrieval"))
+		log.Printf("Housing Type - Get All - DB Error - %s : %s\n", time.Now(), err)
 
 		return
 	}
@@ -81,10 +86,11 @@ func GetAllHousingTypes(w http.ResponseWriter, r *http.Request) {
 func GetAllHousingByType(w http.ResponseWriter, r *http.Request) {
 	validUUID := uuid.MustParse(mux.Vars(r)["housing_type_id"])
 
-	if housingType, _ := db.GetHousingTypeByID(validUUID); housingType == nil {
+	if housingType, err := db.GetHousingTypeByID(validUUID); housingType == nil {
 		w.WriteHeader(http.StatusNotFound)
 		var notFound *models.NotFound
 		json.NewEncoder(w).Encode(notFound.GetError("The given housing type ID doesn't exist"))
+		log.Printf("Housing Type - Get All By Type - ID not found - %s : %s\n", time.Now(), err)
 
 		return
 	}
@@ -94,6 +100,7 @@ func GetAllHousingByType(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusBadRequest)
 		var badRequest *models.BadRequest
 		json.NewEncoder(w).Encode(badRequest.GetError("An error occurred during housing retrieval"))
+		log.Printf("Housing Type - Get All By Type - DB Retrieval Error - %s : %s\n", time.Now(), err)
 
 		return
 	}
