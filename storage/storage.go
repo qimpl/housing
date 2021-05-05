@@ -16,6 +16,7 @@ var minioClient *minio.Client
 var ctx context.Context
 
 func init() {
+	log.Println("Init Minio connection and bucket")
 	ctx = context.Background()
 
 	var err error
