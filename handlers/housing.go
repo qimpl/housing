@@ -328,6 +328,18 @@ func GetHousingByOwnerID(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	for index, housing := range housings {
+		for i := 1; i <= 5; i++ {
+			if picture, err := storage.GetFromBucket(
+				fmt.Sprintf("%s/housing_picture_%s_%d.png", housing.ID, housing.ID, i),
+			); err == nil {
+				housing.Pictures = append(housing.Pictures, picture)
+			}
+		}
+
+		housings[index] = housing
+	}
+
 	json.NewEncoder(w).Encode(housings)
 }
 
