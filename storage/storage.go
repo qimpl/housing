@@ -35,7 +35,9 @@ func init() {
 
 	bucketName := os.Getenv("STORAGE_BUCKET_NAME")
 
-	if found, errBucketExists := minioClient.BucketExists(ctx, bucketName); errBucketExists == nil && !found {
+	if found, errBucketExists := minioClient.BucketExists(ctx, bucketName); errBucketExists != nil {
+		log.Fatalln("Storage - Minio Bucket Check Error -", err)
+	} else if !found {
 		createBucket(bucketName)
 	}
 }
