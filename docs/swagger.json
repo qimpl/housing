@@ -3,7 +3,6 @@
     "info": {
         "title": "Housing API",
         "contact": {},
-        "license": {},
         "version": "0.1.0"
     },
     "basePath": "/v1",
@@ -482,7 +481,9 @@
                     }
                 ],
                 "responses": {
-                    "204": {},
+                    "204": {
+                        "description": ""
+                    },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
@@ -521,7 +522,9 @@
                     }
                 ],
                 "responses": {
-                    "204": {},
+                    "204": {
+                        "description": ""
+                    },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
@@ -572,7 +575,9 @@
                     }
                 ],
                 "responses": {
-                    "204": {},
+                    "204": {
+                        "description": ""
+                    },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
@@ -701,10 +706,21 @@
                         "name": "visit_id",
                         "in": "path",
                         "required": true
+                    },
+                    {
+                        "description": "Accept Visit data",
+                        "name": "visit",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.AcceptVisit"
+                        }
                     }
                 ],
                 "responses": {
-                    "204": {},
+                    "204": {
+                        "description": ""
+                    },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
@@ -722,6 +738,15 @@
         }
     },
     "definitions": {
+        "models.AcceptVisit": {
+            "type": "object",
+            "properties": {
+                "user_email": {
+                    "type": "string",
+                    "example": "jean@qimpl.io"
+                }
+            }
+        },
         "models.ErrorResponse": {
             "type": "object",
             "properties": {
