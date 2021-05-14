@@ -19,7 +19,6 @@ var doc = `{
         "description": "{{.Description}}",
         "title": "{{.Title}}",
         "contact": {},
-        "license": {},
         "version": "{{.Version}}"
     },
     "host": "{{.Host}}",
@@ -499,7 +498,9 @@ var doc = `{
                     }
                 ],
                 "responses": {
-                    "204": {},
+                    "204": {
+                        "description": ""
+                    },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
@@ -538,7 +539,9 @@ var doc = `{
                     }
                 ],
                 "responses": {
-                    "204": {},
+                    "204": {
+                        "description": ""
+                    },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
@@ -589,7 +592,9 @@ var doc = `{
                     }
                 ],
                 "responses": {
-                    "204": {},
+                    "204": {
+                        "description": ""
+                    },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
@@ -718,10 +723,21 @@ var doc = `{
                         "name": "visit_id",
                         "in": "path",
                         "required": true
+                    },
+                    {
+                        "description": "Accept Visit data",
+                        "name": "visit",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.AcceptVisit"
+                        }
                     }
                 ],
                 "responses": {
-                    "204": {},
+                    "204": {
+                        "description": ""
+                    },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
@@ -739,6 +755,15 @@ var doc = `{
         }
     },
     "definitions": {
+        "models.AcceptVisit": {
+            "type": "object",
+            "properties": {
+                "user_email": {
+                    "type": "string",
+                    "example": "jean@qimpl.io"
+                }
+            }
+        },
         "models.ErrorResponse": {
             "type": "object",
             "properties": {

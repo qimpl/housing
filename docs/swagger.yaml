@@ -1,5 +1,11 @@
 basePath: /v1
 definitions:
+  models.AcceptVisit:
+    properties:
+      user_email:
+        example: jean@qimpl.io
+        type: string
+    type: object
   models.ErrorResponse:
     properties:
       error_code:
@@ -196,7 +202,6 @@ definitions:
     type: object
 info:
   contact: {}
-  license: {}
   title: Housing API
   version: 0.1.0
 paths:
@@ -258,7 +263,8 @@ paths:
         required: true
         type: string
       responses:
-        "204": {}
+        "204":
+          description: ""
         "400":
           description: Bad Request
           schema:
@@ -344,7 +350,8 @@ paths:
         schema:
           $ref: '#/definitions/models.UpdatePublicationStatus'
       responses:
-        "204": {}
+        "204":
+          description: ""
         "400":
           description: Bad Request
           schema:
@@ -378,7 +385,8 @@ paths:
         schema:
           $ref: '#/definitions/models.UpdateStatusBody'
       responses:
-        "204": {}
+        "204":
+          description: ""
         "400":
           description: Bad Request
           schema:
@@ -628,10 +636,17 @@ paths:
         name: visit_id
         required: true
         type: string
+      - description: Accept Visit data
+        in: body
+        name: visit
+        required: true
+        schema:
+          $ref: '#/definitions/models.AcceptVisit'
       produces:
       - application/json
       responses:
-        "204": {}
+        "204":
+          description: ""
         "400":
           description: Bad Request
           schema:
